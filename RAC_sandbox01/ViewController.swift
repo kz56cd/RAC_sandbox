@@ -8,16 +8,46 @@
 
 import UIKit
 import ReactiveSwift
+import Result
 
 class ViewController: UIViewController {
 
+    @IBOutlet weak var label: UILabel!
+    @IBOutlet weak var textField: UITextField!
+    
+
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(self.view.hasAmbiguousLayout)
+        initView()
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
+    
+    // private
+    
+    private func initView() {
+        let printIt: (String) -> () = {
+            next in print("next: \(next)")
+        }
+        
+        testSignal().observeValues(printIt)
+        
+    }
+    
+    private func testSignal() -> Signal<String, NoError> {
+        return Signal { observer in
+            DispatchQueue.main.async {
+                var i = 0
+                while i < 10 {
+                    observer.send(value: String(i))
+                    i += 1
+                }
+            }
+            // observer.sendCompleted() // イベントストリーム終了
+            return nil
+        }
+    }
 }
-

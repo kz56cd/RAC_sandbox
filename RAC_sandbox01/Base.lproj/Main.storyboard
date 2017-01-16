@@ -20,8 +20,35 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="K6b-sh-gWQ">
+                                <rect key="frame" x="139" y="217" width="97" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="97" id="frc-kv-uoB"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="04z-li-5UY">
+                                <rect key="frame" x="166" y="165" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="K6b-sh-gWQ" firstAttribute="top" secondItem="04z-li-5UY" secondAttribute="bottom" constant="31" id="giF-1w-EbO"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="K6b-sh-gWQ" secondAttribute="bottom" constant="420" id="nw9-Qd-bCj"/>
+                            <constraint firstItem="K6b-sh-gWQ" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="rE3-Y9-jv3"/>
+                            <constraint firstItem="K6b-sh-gWQ" firstAttribute="centerX" secondItem="04z-li-5UY" secondAttribute="centerX" id="w3h-W6-f74"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="label" destination="04z-li-5UY" id="P6f-Ib-VgT"/>
+                        <outlet property="textField" destination="K6b-sh-gWQ" id="b9d-mF-Pgg"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
