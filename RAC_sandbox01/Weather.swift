@@ -9,6 +9,10 @@
 import Foundation
 import APIKit
 
+// TODO:
+// http://ci.nii.ac.jp/books/opensearch/search?q={*検索ワード}
+// 上記の図書館蔵書検索のapiを利用する
+
 //struct WeatherData {
 //    var title: String = ""
 //    var descripton: String = ""
