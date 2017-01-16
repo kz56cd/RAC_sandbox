@@ -9,6 +9,7 @@
 import UIKit
 import ReactiveSwift
 import Result
+import APIKit
 
 class ViewController: UIViewController {
 
@@ -20,6 +21,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         initView()
+        sendRequest()
     }
     
     override func didReceiveMemoryWarning() {
@@ -34,7 +36,6 @@ class ViewController: UIViewController {
         }
         
         testSignal().observeValues(printIt)
-        
     }
     
     private func testSignal() -> Signal<String, NoError> {
@@ -50,4 +51,20 @@ class ViewController: UIViewController {
             return nil
         }
     }
+    
+    // Sending request
+    
+    private func sendRequest() {
+        let request = GetWeatherRequest()
+        Session.send(request) { result in
+            switch result {
+            case .success(let weatherData):
+                print("title: \(weatherData.title)")
+                print("description: \(weatherData.descripton)")
+            case .failure(let error):
+                print("error: \(error)")
+            }
+        }
+    }
+
 }

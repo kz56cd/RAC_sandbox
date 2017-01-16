@@ -1,1 +1,2 @@
 github "ReactiveCocoa/ReactiveSwift"
+github "ishkawa/APIKit" ~> 3.0
