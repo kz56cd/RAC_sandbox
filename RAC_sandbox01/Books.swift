@@ -13,8 +13,6 @@ import APIKit
 //// http://ci.nii.ac.jp/books/opensearch/search?q={*検索ワード}
 //// 上記の図書館蔵書検索のapiを利用する
 //
-//// ====== DataModel ======
-//
 //struct BooksData {
 //    var title: String     = ""
 //    var publisher: String = ""
@@ -46,7 +44,7 @@ import APIKit
 //        }
 //    }
 //}
-//
+
 //// ====== Defining request type ======
 //
 //

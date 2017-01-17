@@ -15,7 +15,7 @@ import APIKit
 
 // ====== DataModel ======
 
-struct BooksData {
+struct Books {
     var title: String     = ""
     var publisher: String = ""
     var link: String      = ""
@@ -61,7 +61,7 @@ extension BooksRequestType {
 }
 
 struct GetBooksRequest: BooksRequestType {
-    typealias Response = BooksData
+    typealias Response = Books
     
     var method: HTTPMethod {
         return .get
@@ -76,7 +76,7 @@ struct GetBooksRequest: BooksRequestType {
             "format": "json"
         ]
     }
-    func response(from object: Any, urlResponse: HTTPURLResponse) throws -> BooksData {
-        return try BooksData(object: object)
+    func response(from object: Any, urlResponse: HTTPURLResponse) throws -> Books {
+        return try Books(object: object)
     }
 }
