@@ -6,6 +6,11 @@
 	<dict>
 		<key>NSExceptionDomains</key>
 		<dict>
+			<key>ci.nii.ac.jp</key>
+			<dict>
+				<key>NSExceptionAllowsInsecureHTTPLoads</key>
+				<true/>
+			</dict>
 			<key>weather.livedoor.com</key>
 			<dict>
 				<key>NSExceptionAllowsInsecureHTTPLoads</key>

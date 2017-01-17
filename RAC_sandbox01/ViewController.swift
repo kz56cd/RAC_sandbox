@@ -53,12 +53,11 @@ class ViewController: UIViewController {
     // Sending request
     
     private func sendRequest() {
-        let request = GetWeatherRequest()
+        let request = GetBooksRequest()
         Session.send(request) { result in
             switch result {
-            case .success(let weatherData):
-                print("title: \(weatherData.title)")
-                print("description: \(weatherData.descripton)")
+            case .success(let booksData):
+                print("booksData: \(booksData)")
             case .failure(let error):
                 print("error: \(error)")
             }

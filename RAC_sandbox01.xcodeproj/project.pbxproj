@@ -17,7 +17,9 @@
 		E623F4F21E27815300A9C630 /* ReactiveSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E623F4F01E27815300A9C630 /* ReactiveSwift.framework */; };
 		E66ED79D1E2C8AC900F30A19 /* Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = E66ED79C1E2C8AC900F30A19 /* Weather.swift */; };
 		E66ED7A41E2C9A2A00F30A19 /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E623F4F11E27815300A9C630 /* Result.framework */; };
+		E6A27FDF1E2DBB0C000547D8 /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6A27FDE1E2DBB0C000547D8 /* Book.swift */; };
 		E6F5909B1E2C9B7B00619598 /* APIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E6F5909A1E2C9B7B00619598 /* APIKit.framework */; };
+		E6F5909D1E2CD37400619598 /* Books.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6F5909C1E2CD37400619598 /* Books.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,7 +69,9 @@
 		E623F4F11E27815300A9C630 /* Result.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Result.framework; path = Carthage/Build/iOS/Result.framework; sourceTree = "<group>"; };
 		E66ED79C1E2C8AC900F30A19 /* Weather.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Weather.swift; sourceTree = "<group>"; };
 		E66ED79E1E2C98C200F30A19 /* APIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = APIKit.framework; path = Carthage/Build/Mac/APIKit.framework; sourceTree = "<group>"; };
+		E6A27FDE1E2DBB0C000547D8 /* Book.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Book.swift; sourceTree = "<group>"; };
 		E6F5909A1E2C9B7B00619598 /* APIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = APIKit.framework; path = Carthage/Build/iOS/APIKit.framework; sourceTree = "<group>"; };
+		E6F5909C1E2CD37400619598 /* Books.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Books.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,6 +133,8 @@
 				E623F4CA1E271DD400A9C630 /* LaunchScreen.storyboard */,
 				E623F4CD1E271DD400A9C630 /* Info.plist */,
 				E66ED79C1E2C8AC900F30A19 /* Weather.swift */,
+				E6F5909C1E2CD37400619598 /* Books.swift */,
+				E6A27FDE1E2DBB0C000547D8 /* Book.swift */,
 			);
 			path = RAC_sandbox01;
 			sourceTree = "<group>";
@@ -319,8 +325,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E6F5909D1E2CD37400619598 /* Books.swift in Sources */,
 				E623F4C41E271DD400A9C630 /* ViewController.swift in Sources */,
 				E66ED79D1E2C8AC900F30A19 /* Weather.swift in Sources */,
+				E6A27FDF1E2DBB0C000547D8 /* Book.swift in Sources */,
 				E623F4C21E271DD400A9C630 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
