@@ -11,7 +11,7 @@ import ReactiveSwift
 import Result
 import APIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, StoryboardInstantiatable {
 
     @IBOutlet weak var label: UILabel!
     @IBOutlet weak var textField: UITextField!
