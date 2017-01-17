@@ -13,43 +13,6 @@ import APIKit
 // http://ci.nii.ac.jp/books/opensearch/search?q={*検索ワード}
 // 上記の図書館蔵書検索のapiを利用する
 
-// ====== DataModel ======
-
-struct Books {
-    var title: String     = ""
-    var publisher: String = ""
-    var link: String      = ""
-    
-    init (object: Any) throws {
-        
-        // try parse
-        
-        guard let dictionary = object as? [String: Any],
-            let graph = dictionary["@graph"] as? Array<Any> else {
-                throw ResponseError.unexpectedObject(object)
-        }
-        // print("graph.count: \(graph.count)")
-        for data in graph {
-            guard let datadic = data as? [String: Any],
-                let items = datadic["items"] as? Array<Any> else {
-                    throw ResponseError.unexpectedObject(object)
-            }
-            for item in items {
-                guard let item = item as? [String: Any] else {
-                    throw ResponseError.unexpectedObject(object)
-                }
-                let book:Book = Book(object: item)
-                print("title: \(book.title)")
-                print("link: \(book.link)")
-                
-            }
-        }
-    }
-}
-
-// ====== Defining request type ======
-
-
 protocol BooksRequestType: Request {
     
 }

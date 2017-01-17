@@ -56,8 +56,9 @@ class ViewController: UIViewController {
         let request = GetBooksRequest()
         Session.send(request) { result in
             switch result {
-            case .success(let booksData):
-                print("booksData: \(booksData)")
+            case .success(let books):
+//                print("booksData: \(books.list)")
+                print("booksData: \(books.list[1].title)")
             case .failure(let error):
                 print("error: \(error)")
             }
