@@ -15,11 +15,12 @@ class ViewController: UIViewController, StoryboardInstantiatable {
 
     @IBOutlet weak var label: UILabel!
     @IBOutlet weak var textField: UITextField!
+    @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         initView()
-        sendBooksRequest()
+
     }
     
     override func didReceiveMemoryWarning() {
@@ -29,6 +30,8 @@ class ViewController: UIViewController, StoryboardInstantiatable {
     // private
     
     private func initView() {
+//        initTableView()
+        sendBooksRequest()
     }
     
     // Sending request
@@ -52,5 +55,39 @@ class ViewController: UIViewController, StoryboardInstantiatable {
         let testViewController = TestViewController.instantiate()
         self.present(testViewController, animated: true, completion: nil)
     }
+}
 
+extension ViewController: UITableViewDelegate {
+    internal func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("tapped cell")
+    }
+}
+
+extension ViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 3
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        return self.makeCell(tableView: tableView, cellForRowAtIndexPath: indexPath)
+    }
+
+    func initTableView() {
+        self.tableView?.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
+        //        self.tableView?.registerNib(UINib(nibName: CELL_IDENTIFIER_DESC, bundle: nil), forCellReuseIdentifier: CELL_IDENTIFIER_DESC)
+    }
+    
+    // セル生成
+    private func makeCell(tableView: UITableView, cellForRowAtIndexPath indexPath: IndexPath) -> UITableViewCell {
+        let cell             = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+        cell.selectionStyle  = UITableViewCellSelectionStyle.none
+        cell.textLabel?.text = "テキスト"
+        return cell
+    }
+}
+
+extension ViewController: UIScrollViewDelegate {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        // スタブ
+    }
 }
