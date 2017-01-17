@@ -30,23 +30,22 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mha-pp-aQC">
-                                <rect key="frame" x="166" y="165" width="42" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xxX-qT-kZL">
+                                <rect key="frame" x="164" y="154" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="buttonTapped:" destination="ZM8-pJ-Ytw" eventType="touchUpInside" id="Wqt-Xg-kgL"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="UNB-XY-cJl" firstAttribute="centerX" secondItem="Mha-pp-aQC" secondAttribute="centerX" id="ggH-9p-tiI"/>
                             <constraint firstItem="UNB-XY-cJl" firstAttribute="centerX" secondItem="e1y-95-wZH" secondAttribute="centerX" id="juc-TQ-1q7"/>
-                            <constraint firstItem="UNB-XY-cJl" firstAttribute="top" secondItem="Mha-pp-aQC" secondAttribute="bottom" constant="31" id="k8t-sG-6vb"/>
                             <constraint firstItem="09g-5h-5Dc" firstAttribute="top" secondItem="UNB-XY-cJl" secondAttribute="bottom" constant="420" id="yaZ-45-Ryq"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="label" destination="Mha-pp-aQC" id="yoZ-ac-fdd"/>
                         <outlet property="textField" destination="UNB-XY-cJl" id="F3P-BU-lM9"/>
                     </connections>
                 </viewController>

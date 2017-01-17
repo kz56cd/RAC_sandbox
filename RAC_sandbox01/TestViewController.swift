@@ -7,29 +7,62 @@
 //
 
 import UIKit
+import ReactiveSwift
+import Result
+import APIKit
 
-class TestViewController: ViewController {
-
+class TestViewController: UIViewController, StoryboardInstantiatable {
+    
+    @IBOutlet weak var label: UILabel!
+    @IBOutlet weak var textField: UITextField!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        initView()
+        sendRequest()
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
     }
-    */
-
+    
+    // private
+    
+    private func initView() {
+        let printIt: (String) -> () = {
+            next in print("next: \(next)")
+        }
+        
+        testSignal().observeValues(printIt)
+    }
+    
+    private func testSignal() -> Signal<String, NoError> {
+        return Signal { observer in
+            DispatchQueue.main.async {
+                var i = 0
+                while i < 10 {
+                    observer.send(value: String(i))
+                    i += 1
+                }
+            }
+            // observer.sendCompleted() // イベントストリーム終了
+            return nil
+        }
+    }
+    
+    // Sending request
+    
+    private func sendRequest() {
+        let request = GetBooksRequest()
+        Session.send(request) { result in
+            switch result {
+            case .success(let books):
+                //                print("booksData: \(books.list)")
+                print("booksData: \(books.list[1].title)")
+            case .failure(let error):
+                print("error: \(error)")
+            }
+        }
+    }
+    
 }

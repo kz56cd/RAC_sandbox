@@ -20,6 +20,8 @@
 		E6A27FE11E2DC195000547D8 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6A27FE01E2DC195000547D8 /* Request.swift */; };
 		E6A27FE51E2DCD0E000547D8 /* StoryboardInstantiatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6A27FE41E2DCD0E000547D8 /* StoryboardInstantiatable.swift */; };
 		E6A27FE71E2DE947000547D8 /* ViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E6A27FE61E2DE947000547D8 /* ViewController.storyboard */; };
+		E6A27FE91E2DEB94000547D8 /* TestViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E6A27FE81E2DEB94000547D8 /* TestViewController.storyboard */; };
+		E6A27FEB1E2DEBAD000547D8 /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6A27FEA1E2DEBAD000547D8 /* TestViewController.swift */; };
 		E6F5909B1E2C9B7B00619598 /* APIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E6F5909A1E2C9B7B00619598 /* APIKit.framework */; };
 		E6F5909D1E2CD37400619598 /* Books.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6F5909C1E2CD37400619598 /* Books.swift */; };
 /* End PBXBuildFile section */
@@ -74,6 +76,8 @@
 		E6A27FE01E2DC195000547D8 /* Request.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
 		E6A27FE41E2DCD0E000547D8 /* StoryboardInstantiatable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryboardInstantiatable.swift; sourceTree = "<group>"; };
 		E6A27FE61E2DE947000547D8 /* ViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ViewController.storyboard; sourceTree = "<group>"; };
+		E6A27FE81E2DEB94000547D8 /* TestViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = TestViewController.storyboard; sourceTree = "<group>"; };
+		E6A27FEA1E2DEBAD000547D8 /* TestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
 		E6F5909A1E2C9B7B00619598 /* APIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = APIKit.framework; path = Carthage/Build/iOS/APIKit.framework; sourceTree = "<group>"; };
 		E6F5909C1E2CD37400619598 /* Books.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Books.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -141,6 +145,8 @@
 				E6A27FE01E2DC195000547D8 /* Request.swift */,
 				E6A27FE41E2DCD0E000547D8 /* StoryboardInstantiatable.swift */,
 				E6A27FE61E2DE947000547D8 /* ViewController.storyboard */,
+				E6A27FE81E2DEB94000547D8 /* TestViewController.storyboard */,
+				E6A27FEA1E2DEBAD000547D8 /* TestViewController.swift */,
 			);
 			path = RAC_sandbox01;
 			sourceTree = "<group>";
@@ -287,6 +293,7 @@
 				E623F4CC1E271DD400A9C630 /* LaunchScreen.storyboard in Resources */,
 				E623F4C91E271DD400A9C630 /* Assets.xcassets in Resources */,
 				E6A27FE71E2DE947000547D8 /* ViewController.storyboard in Resources */,
+				E6A27FE91E2DEB94000547D8 /* TestViewController.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -333,6 +340,7 @@
 			files = (
 				E6F5909D1E2CD37400619598 /* Books.swift in Sources */,
 				E6A27FE11E2DC195000547D8 /* Request.swift in Sources */,
+				E6A27FEB1E2DEBAD000547D8 /* TestViewController.swift in Sources */,
 				E623F4C41E271DD400A9C630 /* ViewController.swift in Sources */,
 				E6A27FE51E2DCD0E000547D8 /* StoryboardInstantiatable.swift in Sources */,
 				E66ED79D1E2C8AC900F30A19 /* Weather.swift in Sources */,

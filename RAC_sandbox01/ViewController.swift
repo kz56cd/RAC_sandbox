@@ -19,7 +19,7 @@ class ViewController: UIViewController, StoryboardInstantiatable {
     override func viewDidLoad() {
         super.viewDidLoad()
         initView()
-        sendRequest()
+        sendBooksRequest()
     }
     
     override func didReceiveMemoryWarning() {
@@ -29,30 +29,11 @@ class ViewController: UIViewController, StoryboardInstantiatable {
     // private
     
     private func initView() {
-        let printIt: (String) -> () = {
-            next in print("next: \(next)")
-        }
-        
-        testSignal().observeValues(printIt)
-    }
-    
-    private func testSignal() -> Signal<String, NoError> {
-        return Signal { observer in
-            DispatchQueue.main.async {
-                var i = 0
-                while i < 10 {
-                    observer.send(value: String(i))
-                    i += 1
-                }
-            }
-            // observer.sendCompleted() // イベントストリーム終了
-            return nil
-        }
     }
     
     // Sending request
     
-    private func sendRequest() {
+    private func sendBooksRequest() {
         let request = GetBooksRequest()
         Session.send(request) { result in
             switch result {
@@ -63,6 +44,13 @@ class ViewController: UIViewController, StoryboardInstantiatable {
                 print("error: \(error)")
             }
         }
+    }
+    
+    // Action
+    
+    @IBAction func buttonTapped(_ sender: UIButton) {
+        let testViewController = TestViewController.instantiate()
+        self.present(testViewController, animated: true, completion: nil)
     }
 
 }
