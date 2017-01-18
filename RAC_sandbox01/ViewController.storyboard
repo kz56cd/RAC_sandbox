@@ -53,17 +53,45 @@
                                     <constraint firstAttribute="height" constant="70" id="iub-sG-gO1"/>
                                 </constraints>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="vDV-c6-feL">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="66" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="vDV-c6-feL">
                                 <rect key="frame" x="0.0" y="70" width="375" height="597"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="5mE-f8-Zh3">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="BookCell" id="5mE-f8-Zh3" customClass="BookCell" customModule="RAC_sandbox01" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="66"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="5mE-f8-Zh3" id="viA-Nw-MRh">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="65"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="UeV-oS-tAh">
+                                                    <rect key="frame" x="6" y="8" width="361" height="32"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZVq-NS-s0m">
+                                                    <rect key="frame" x="8" y="43" width="361" height="14"/>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="UeV-oS-tAh" secondAttribute="trailing" constant="8" id="Iny-Fl-wCy"/>
+                                                <constraint firstAttribute="trailing" secondItem="ZVq-NS-s0m" secondAttribute="trailing" constant="6" id="QPQ-al-roW"/>
+                                                <constraint firstItem="ZVq-NS-s0m" firstAttribute="leading" secondItem="viA-Nw-MRh" secondAttribute="leading" constant="8" id="QyN-Ll-YY8"/>
+                                                <constraint firstItem="UeV-oS-tAh" firstAttribute="leading" secondItem="viA-Nw-MRh" secondAttribute="leading" constant="6" id="Soh-sK-hZ7"/>
+                                                <constraint firstAttribute="bottom" secondItem="ZVq-NS-s0m" secondAttribute="bottom" constant="8" id="V03-LD-0Hp"/>
+                                                <constraint firstItem="UeV-oS-tAh" firstAttribute="top" secondItem="viA-Nw-MRh" secondAttribute="top" constant="8" id="lkH-Go-WEx"/>
+                                                <constraint firstItem="ZVq-NS-s0m" firstAttribute="top" secondItem="UeV-oS-tAh" secondAttribute="bottom" constant="3" id="ugw-cN-OFC"/>
+                                            </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="publisherLabel" destination="ZVq-NS-s0m" id="Lxk-5u-8vT"/>
+                                            <outlet property="titleLabel" destination="UeV-oS-tAh" id="1e2-na-RGb"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
@@ -90,7 +118,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fBG-sK-h8G" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-46" y="-136"/>
+            <point key="canvasLocation" x="-47.200000000000003" y="-136.28185907046478"/>
         </scene>
     </scenes>
 </document>

@@ -17,6 +17,8 @@ class ViewController: UIViewController, StoryboardInstantiatable {
     @IBOutlet weak var textField: UITextField!
     @IBOutlet weak var tableView: UITableView!
     
+    var booklist: [Book] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         initView()
@@ -43,6 +45,8 @@ class ViewController: UIViewController, StoryboardInstantiatable {
             case .success(let books):
 //                print("booksData: \(books.list)")
                 print("booksData: \(books.list[1].title)")
+                self.booklist = books.list
+                self.reloadTableView()
             case .failure(let error):
                 print("error: \(error)")
             }
@@ -59,13 +63,16 @@ class ViewController: UIViewController, StoryboardInstantiatable {
 
 extension ViewController: UITableViewDelegate {
     internal func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("tapped cell")
+        guard let cell = tableView.cellForRow(at: indexPath) as? BookCell else {
+            return
+        }
+        print("\(cell.getLink())")
     }
 }
 
 extension ViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        return booklist.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -73,16 +80,29 @@ extension ViewController: UITableViewDataSource {
     }
 
     func initTableView() {
-        self.tableView?.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
+        self.tableView?.register(UITableViewCell.self, forCellReuseIdentifier: "BookCell")
         //        self.tableView?.registerNib(UINib(nibName: CELL_IDENTIFIER_DESC, bundle: nil), forCellReuseIdentifier: CELL_IDENTIFIER_DESC)
     }
     
     // セル生成
-    private func makeCell(tableView: UITableView, cellForRowAtIndexPath indexPath: IndexPath) -> UITableViewCell {
-        let cell             = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+    private func makeCell(tableView: UITableView, cellForRowAtIndexPath indexPath: IndexPath) -> BookCell {
+        if booklist.count < indexPath.row {
+            return UITableViewCell() as! BookCell
+        }
+        guard  let cell = tableView.dequeueReusableCell(withIdentifier: "BookCell", for: indexPath) as? BookCell else {
+            return UITableViewCell() as! BookCell
+        }
+        guard let book: Book = booklist[indexPath.row] else {
+            return UITableViewCell() as! BookCell
+        }
+        
         cell.selectionStyle  = UITableViewCellSelectionStyle.none
-        cell.textLabel?.text = "テキスト"
+        cell.glueData(book: book)
         return cell
+    }
+    
+    func reloadTableView() {
+        tableView.reloadData()
     }
 }
 
