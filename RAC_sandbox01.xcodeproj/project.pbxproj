@@ -22,6 +22,7 @@
 		E6A27FE71E2DE947000547D8 /* ViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E6A27FE61E2DE947000547D8 /* ViewController.storyboard */; };
 		E6A27FE91E2DEB94000547D8 /* TestViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E6A27FE81E2DEB94000547D8 /* TestViewController.storyboard */; };
 		E6A27FEB1E2DEBAD000547D8 /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6A27FEA1E2DEBAD000547D8 /* TestViewController.swift */; };
+		E6A27FED1E2E0DCB000547D8 /* BookCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6A27FEC1E2E0DCB000547D8 /* BookCell.swift */; };
 		E6F5909B1E2C9B7B00619598 /* APIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E6F5909A1E2C9B7B00619598 /* APIKit.framework */; };
 		E6F5909D1E2CD37400619598 /* Books.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6F5909C1E2CD37400619598 /* Books.swift */; };
 /* End PBXBuildFile section */
@@ -78,6 +79,7 @@
 		E6A27FE61E2DE947000547D8 /* ViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ViewController.storyboard; sourceTree = "<group>"; };
 		E6A27FE81E2DEB94000547D8 /* TestViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = TestViewController.storyboard; sourceTree = "<group>"; };
 		E6A27FEA1E2DEBAD000547D8 /* TestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
+		E6A27FEC1E2E0DCB000547D8 /* BookCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookCell.swift; sourceTree = "<group>"; };
 		E6F5909A1E2C9B7B00619598 /* APIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = APIKit.framework; path = Carthage/Build/iOS/APIKit.framework; sourceTree = "<group>"; };
 		E6F5909C1E2CD37400619598 /* Books.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Books.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -147,6 +149,7 @@
 				E6A27FE61E2DE947000547D8 /* ViewController.storyboard */,
 				E6A27FE81E2DEB94000547D8 /* TestViewController.storyboard */,
 				E6A27FEA1E2DEBAD000547D8 /* TestViewController.swift */,
+				E6A27FEC1E2E0DCB000547D8 /* BookCell.swift */,
 			);
 			path = RAC_sandbox01;
 			sourceTree = "<group>";
@@ -338,6 +341,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E6A27FED1E2E0DCB000547D8 /* BookCell.swift in Sources */,
 				E6F5909D1E2CD37400619598 /* Books.swift in Sources */,
 				E6A27FE11E2DC195000547D8 /* Request.swift in Sources */,
 				E6A27FEB1E2DEBAD000547D8 /* TestViewController.swift in Sources */,
