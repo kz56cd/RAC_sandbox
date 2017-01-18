@@ -18,6 +18,11 @@ class Book {
         self.init()
         let title = object["title"] as? String
         let link = object["@id"] as? String
+        if let publisherArray = object["dc:publisher"] as? [String] {
+            if publisherArray.count >= 1 {
+                self.publisher = publisherArray[0]
+            }
+        }
         self.title = title ?? ""
         self.link = link ?? ""
     }

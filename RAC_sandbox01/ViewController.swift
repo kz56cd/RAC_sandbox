@@ -6,10 +6,12 @@
 //  Copyright © 2017年 msano. All rights reserved.
 //
 
+import SafariServices
 import UIKit
 import ReactiveSwift
 import Result
 import APIKit
+
 
 class ViewController: UIViewController, StoryboardInstantiatable {
 
@@ -66,7 +68,17 @@ extension ViewController: UITableViewDelegate {
         guard let cell = tableView.cellForRow(at: indexPath) as? BookCell else {
             return
         }
-        print("\(cell.getLink())")
+        tryDispWebView(cell: cell)
+    }
+}
+
+extension ViewController: SFSafariViewControllerDelegate {
+    func tryDispWebView(cell: BookCell) {
+        guard let url: URL = cell.getLink() else {
+            return
+        }
+        let safariVC = SFSafariViewController(url: url)
+        self.present(safariVC, animated: true, completion: nil)
     }
 }
 
