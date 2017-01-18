@@ -53,7 +53,7 @@ class TestViewController: UIViewController, StoryboardInstantiatable {
     // Sending request
     
     private func sendRequest() {
-        let request = GetBooksRequest()
+        let request = GetBooksRequest(keyword: "java")
         Session.send(request) { result in
             switch result {
             case .success(let books):

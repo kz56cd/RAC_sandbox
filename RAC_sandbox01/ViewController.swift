@@ -31,22 +31,29 @@ class ViewController: UIViewController, StoryboardInstantiatable {
         super.didReceiveMemoryWarning()
     }
     
+    // Action
+    
+    @IBAction func buttonTapped(_ sender: UIButton) {
+        // moveTestVC()
+        guard let keyword = textField.text else {
+            return
+        }
+        sendBooksRequest(keyword: keyword)
+    }
+    
     // private
     
     private func initView() {
-//        initTableView()
-        sendBooksRequest()
+//        sendBooksRequest(keyword: "java")
     }
     
     // Sending request
     
-    private func sendBooksRequest() {
-        let request = GetBooksRequest()
+    private func sendBooksRequest(keyword: String) {
+        let request = GetBooksRequest(keyword: keyword)
         Session.send(request) { result in
             switch result {
             case .success(let books):
-//                print("booksData: \(books.list)")
-                print("booksData: \(books.list[1].title)")
                 self.booklist = books.list
                 self.reloadTableView()
             case .failure(let error):
@@ -55,9 +62,9 @@ class ViewController: UIViewController, StoryboardInstantiatable {
         }
     }
     
-    // Action
+    // for debug
     
-    @IBAction func buttonTapped(_ sender: UIButton) {
+    private func moveTestVC() {
         let testViewController = TestViewController.instantiate()
         self.present(testViewController, animated: true, completion: nil)
     }

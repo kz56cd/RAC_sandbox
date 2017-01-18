@@ -35,11 +35,17 @@ struct GetBooksRequest: BooksRequestType {
     }
     var parameters: Any? {
         return [
-            "q": "オブジェクト指向",
+            "q": self.keyword,
             "count": "40",
             "format": "json"
         ]
     }
+    var keyword: String = ""
+    
+    init(keyword: String) {
+        self.keyword = keyword
+    }
+    
     func response(from object: Any, urlResponse: HTTPURLResponse) throws -> Books {
         return try Books(object: object)
     }
