@@ -20,7 +20,6 @@ struct Books {
             let graph = dictionary["@graph"] as? Array<Any> else {
                 throw ResponseError.unexpectedObject(object)
         }
-        // print("graph.count: \(graph.count)")
         for data in graph {
             guard let datadic = data as? [String: Any],
                   let items = datadic["items"] as? Array<Any> else {
