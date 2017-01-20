@@ -18,6 +18,8 @@
 		E66ED7A41E2C9A2A00F30A19 /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E623F4F11E27815300A9C630 /* Result.framework */; };
 		E697FC6F1E31E20A00DD2CD7 /* stub_search_book.json in Resources */ = {isa = PBXBuildFile; fileRef = E697FC6E1E31E20A00DD2CD7 /* stub_search_book.json */; };
 		E697FC731E31E9DB00DD2CD7 /* RequestStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = E697FC721E31E9DB00DD2CD7 /* RequestStub.swift */; };
+		E697FC751E32057B00DD2CD7 /* BookCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E697FC741E32057B00DD2CD7 /* BookCellModel.swift */; };
+		E697FC771E320CF800DD2CD7 /* BookCellModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = E697FC761E320CF800DD2CD7 /* BookCellModels.swift */; };
 		E6A27FDF1E2DBB0C000547D8 /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6A27FDE1E2DBB0C000547D8 /* Book.swift */; };
 		E6A27FE11E2DC195000547D8 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6A27FE01E2DC195000547D8 /* Request.swift */; };
 		E6A27FE51E2DCD0E000547D8 /* StoryboardInstantiatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6A27FE41E2DCD0E000547D8 /* StoryboardInstantiatable.swift */; };
@@ -77,6 +79,8 @@
 		E66ED79E1E2C98C200F30A19 /* APIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = APIKit.framework; path = Carthage/Build/Mac/APIKit.framework; sourceTree = "<group>"; };
 		E697FC6E1E31E20A00DD2CD7 /* stub_search_book.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = stub_search_book.json; sourceTree = "<group>"; };
 		E697FC721E31E9DB00DD2CD7 /* RequestStub.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RequestStub.swift; path = Models/APIManager/RequestStub.swift; sourceTree = "<group>"; };
+		E697FC741E32057B00DD2CD7 /* BookCellModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookCellModel.swift; sourceTree = "<group>"; };
+		E697FC761E320CF800DD2CD7 /* BookCellModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BookCellModels.swift; path = UIs/BookCellModels.swift; sourceTree = "<group>"; };
 		E6A27FDE1E2DBB0C000547D8 /* Book.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Book.swift; path = Models/Book.swift; sourceTree = "<group>"; };
 		E6A27FE01E2DC195000547D8 /* Request.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Request.swift; path = Models/APIManager/Request.swift; sourceTree = "<group>"; };
 		E6A27FE41E2DCD0E000547D8 /* StoryboardInstantiatable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StoryboardInstantiatable.swift; path = Utilities/StoryboardInstantiatable.swift; sourceTree = "<group>"; };
@@ -214,6 +218,8 @@
 				E6A27FEA1E2DEBAD000547D8 /* TestViewController.swift */,
 				E6A27FEC1E2E0DCB000547D8 /* BookCell.swift */,
 				E623F4C31E271DD400A9C630 /* ViewController.swift */,
+				E697FC741E32057B00DD2CD7 /* BookCellModel.swift */,
+				E697FC761E320CF800DD2CD7 /* BookCellModels.swift */,
 			);
 			name = UIs;
 			sourceTree = "<group>";
@@ -412,8 +418,10 @@
 				E623F4C41E271DD400A9C630 /* ViewController.swift in Sources */,
 				E6A27FE51E2DCD0E000547D8 /* StoryboardInstantiatable.swift in Sources */,
 				E66ED79D1E2C8AC900F30A19 /* Weather.swift in Sources */,
+				E697FC751E32057B00DD2CD7 /* BookCellModel.swift in Sources */,
 				E697FC731E31E9DB00DD2CD7 /* RequestStub.swift in Sources */,
 				E6A27FDF1E2DBB0C000547D8 /* Book.swift in Sources */,
+				E697FC771E320CF800DD2CD7 /* BookCellModels.swift in Sources */,
 				E623F4C21E271DD400A9C630 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

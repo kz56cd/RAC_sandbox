@@ -22,11 +22,10 @@ class BookCell: UITableViewCell {
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
-    
-    func glueData(book: Book) {
-        self.book = book
-        titleLabel.text = book.title
-        publisherLabel.text = book.publisher
+
+    func configure(cellModel: BookCellModelType) {
+        titleLabel.text = cellModel.title
+        publisherLabel.text = cellModel.publisher
     }
     
     func getLink() -> URL? {

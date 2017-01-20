@@ -20,6 +20,7 @@ class ViewController: UIViewController, StoryboardInstantiatable {
     @IBOutlet weak var tableView: UITableView!
     
     var booklist: [Book] = []
+    var booksCellModels: BookCellModels?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,7 +55,7 @@ class ViewController: UIViewController, StoryboardInstantiatable {
         Session.send(request) { result in
             switch result {
             case .success(let books):
-                self.booklist = books.list
+                self.booksCellModels = BookCellModels.init(model: books.list)
                 self.reloadTableView()
             case .failure(let error):
                 print("error: \(error)")
@@ -91,7 +92,7 @@ extension ViewController: SFSafariViewControllerDelegate {
 
 extension ViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return booklist.count
+        return booksCellModels?.cells?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -100,23 +101,25 @@ extension ViewController: UITableViewDataSource {
 
     func initTableView() {
         self.tableView?.register(UITableViewCell.self, forCellReuseIdentifier: "BookCell")
-        //        self.tableView?.registerNib(UINib(nibName: CELL_IDENTIFIER_DESC, bundle: nil), forCellReuseIdentifier: CELL_IDENTIFIER_DESC)
     }
     
     // セル生成
     private func makeCell(tableView: UITableView, cellForRowAtIndexPath indexPath: IndexPath) -> BookCell {
-        if booklist.count < indexPath.row {
+        guard let cells = booksCellModels?.cells else {
             return UITableViewCell() as! BookCell
         }
-        guard  let cell = tableView.dequeueReusableCell(withIdentifier: "BookCell", for: indexPath) as? BookCell else {
-            return UITableViewCell() as! BookCell
-        }
-        guard let book: Book = booklist[indexPath.row] else {
+        if (booksCellModels?.cells?.count ?? 0) < indexPath.row {
             return UITableViewCell() as! BookCell
         }
         
+        guard  let cell = tableView.dequeueReusableCell(withIdentifier: "BookCell", for: indexPath) as? BookCell else {
+            return UITableViewCell() as! BookCell
+        }
+        guard let bookCellModel: BookCellModel = cells[indexPath.row] else {
+            return UITableViewCell() as! BookCell
+        }
         cell.selectionStyle  = UITableViewCellSelectionStyle.none
-        cell.glueData(book: book)
+        cell.configure(cellModel: bookCellModel)
         return cell
     }
     

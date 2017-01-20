@@ -9,7 +9,6 @@
 import Foundation
 import APIKit
 
-
 struct Book {
     var title: String     = ""
     var publisher: String = ""
