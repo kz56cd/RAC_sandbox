@@ -9,6 +9,7 @@
 import Foundation
 import APIKit
 
+
 // TODO:
 // http://ci.nii.ac.jp/books/opensearch/search?q={*検索ワード}
 // http://ci.nii.ac.jp/books/opensearch/search?q=オブジェクト指向&count=40&format=json
