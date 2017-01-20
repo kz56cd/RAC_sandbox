@@ -9,12 +9,15 @@
 import Foundation
 import APIKit
 
-class Book {
+
+struct Book {
     var title: String     = ""
     var publisher: String = ""
     var link: String      = ""
-    
-    convenience init (object: [String: Any]) {
+}
+
+extension Book {
+    init?(object: [String: Any]) {
         self.init()
         let title = object["title"] as? String
         let link = object["@id"] as? String

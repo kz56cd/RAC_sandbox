@@ -179,9 +179,6 @@
 		E69A3DFF1E31A012004D7C43 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				E6F5909C1E2CD37400619598 /* Books.swift */,
-				E6A27FDE1E2DBB0C000547D8 /* Book.swift */,
-				E66ED79C1E2C8AC900F30A19 /* Weather.swift */,
 				E69A3E041E31A06E004D7C43 /* Entities */,
 				E69A3E031E31A069004D7C43 /* APIManager */,
 			);
@@ -227,6 +224,9 @@
 		E69A3E041E31A06E004D7C43 /* Entities */ = {
 			isa = PBXGroup;
 			children = (
+				E6F5909C1E2CD37400619598 /* Books.swift */,
+				E6A27FDE1E2DBB0C000547D8 /* Book.swift */,
+				E66ED79C1E2C8AC900F30A19 /* Weather.swift */,
 			);
 			name = Entities;
 			sourceTree = "<group>";

@@ -11,7 +11,9 @@ import APIKit
 
 struct Books {
     var list: [Book] = []
-    
+}
+
+extension Books {
     init (object: Any) throws {
         
         // try parse
@@ -22,14 +24,14 @@ struct Books {
         }
         for data in graph {
             guard let datadic = data as? [String: Any],
-                  let items = datadic["items"] as? Array<Any> else {
-                throw ResponseError.unexpectedObject(object)
+                let items = datadic["items"] as? Array<Any> else {
+                    throw ResponseError.unexpectedObject(object)
             }
             for item in items {
-                guard let item = item as? [String: Any] else {
-                    throw ResponseError.unexpectedObject(object)
+                guard let item = item as? [String: Any],
+                    let book:Book = Book(object: item) else {
+                        throw ResponseError.unexpectedObject(object)
                 }
-                let book:Book = Book(object: item)
                 list.append(book)
             }
         }
