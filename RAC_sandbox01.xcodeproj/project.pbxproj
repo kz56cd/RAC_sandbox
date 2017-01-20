@@ -16,6 +16,10 @@
 		E623F4F21E27815300A9C630 /* ReactiveSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E623F4F01E27815300A9C630 /* ReactiveSwift.framework */; };
 		E66ED79D1E2C8AC900F30A19 /* Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = E66ED79C1E2C8AC900F30A19 /* Weather.swift */; };
 		E66ED7A41E2C9A2A00F30A19 /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E623F4F11E27815300A9C630 /* Result.framework */; };
+		E697FC6F1E31E20A00DD2CD7 /* stub_search_book.json in Resources */ = {isa = PBXBuildFile; fileRef = E697FC6E1E31E20A00DD2CD7 /* stub_search_book.json */; };
+		E697FC731E31E9DB00DD2CD7 /* RequestStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = E697FC721E31E9DB00DD2CD7 /* RequestStub.swift */; };
+		E697FC751E32057B00DD2CD7 /* BookCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E697FC741E32057B00DD2CD7 /* BookCellModel.swift */; };
+		E697FC771E320CF800DD2CD7 /* BookCellModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = E697FC761E320CF800DD2CD7 /* BookCellModels.swift */; };
 		E6A27FDF1E2DBB0C000547D8 /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6A27FDE1E2DBB0C000547D8 /* Book.swift */; };
 		E6A27FE11E2DC195000547D8 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6A27FE01E2DC195000547D8 /* Request.swift */; };
 		E6A27FE51E2DCD0E000547D8 /* StoryboardInstantiatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6A27FE41E2DCD0E000547D8 /* StoryboardInstantiatable.swift */; };
@@ -59,7 +63,7 @@
 /* Begin PBXFileReference section */
 		E623F4BE1E271DD400A9C630 /* RAC_sandbox01.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RAC_sandbox01.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E623F4C11E271DD400A9C630 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		E623F4C31E271DD400A9C630 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		E623F4C31E271DD400A9C630 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ViewController.swift; path = UIs/ViewController.swift; sourceTree = "<group>"; };
 		E623F4C81E271DD400A9C630 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E623F4CB1E271DD400A9C630 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E623F4CD1E271DD400A9C630 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -71,17 +75,21 @@
 		E623F4E31E271DD400A9C630 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E623F4F01E27815300A9C630 /* ReactiveSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ReactiveSwift.framework; path = Carthage/Build/iOS/ReactiveSwift.framework; sourceTree = "<group>"; };
 		E623F4F11E27815300A9C630 /* Result.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Result.framework; path = Carthage/Build/iOS/Result.framework; sourceTree = "<group>"; };
-		E66ED79C1E2C8AC900F30A19 /* Weather.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Weather.swift; sourceTree = "<group>"; };
+		E66ED79C1E2C8AC900F30A19 /* Weather.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Weather.swift; path = Models/Weather.swift; sourceTree = "<group>"; };
 		E66ED79E1E2C98C200F30A19 /* APIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = APIKit.framework; path = Carthage/Build/Mac/APIKit.framework; sourceTree = "<group>"; };
-		E6A27FDE1E2DBB0C000547D8 /* Book.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Book.swift; sourceTree = "<group>"; };
-		E6A27FE01E2DC195000547D8 /* Request.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
-		E6A27FE41E2DCD0E000547D8 /* StoryboardInstantiatable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryboardInstantiatable.swift; sourceTree = "<group>"; };
-		E6A27FE61E2DE947000547D8 /* ViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ViewController.storyboard; sourceTree = "<group>"; };
-		E6A27FE81E2DEB94000547D8 /* TestViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = TestViewController.storyboard; sourceTree = "<group>"; };
-		E6A27FEA1E2DEBAD000547D8 /* TestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
-		E6A27FEC1E2E0DCB000547D8 /* BookCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookCell.swift; sourceTree = "<group>"; };
+		E697FC6E1E31E20A00DD2CD7 /* stub_search_book.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = stub_search_book.json; sourceTree = "<group>"; };
+		E697FC721E31E9DB00DD2CD7 /* RequestStub.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RequestStub.swift; path = Models/APIManager/RequestStub.swift; sourceTree = "<group>"; };
+		E697FC741E32057B00DD2CD7 /* BookCellModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookCellModel.swift; sourceTree = "<group>"; };
+		E697FC761E320CF800DD2CD7 /* BookCellModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BookCellModels.swift; path = UIs/BookCellModels.swift; sourceTree = "<group>"; };
+		E6A27FDE1E2DBB0C000547D8 /* Book.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Book.swift; path = Models/Book.swift; sourceTree = "<group>"; };
+		E6A27FE01E2DC195000547D8 /* Request.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Request.swift; path = Models/APIManager/Request.swift; sourceTree = "<group>"; };
+		E6A27FE41E2DCD0E000547D8 /* StoryboardInstantiatable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StoryboardInstantiatable.swift; path = Utilities/StoryboardInstantiatable.swift; sourceTree = "<group>"; };
+		E6A27FE61E2DE947000547D8 /* ViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = ViewController.storyboard; path = UIs/ViewController.storyboard; sourceTree = "<group>"; };
+		E6A27FE81E2DEB94000547D8 /* TestViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = TestViewController.storyboard; path = UIs/TestViewController.storyboard; sourceTree = "<group>"; };
+		E6A27FEA1E2DEBAD000547D8 /* TestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TestViewController.swift; path = UIs/TestViewController.swift; sourceTree = "<group>"; };
+		E6A27FEC1E2E0DCB000547D8 /* BookCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BookCell.swift; path = UIs/BookCell.swift; sourceTree = "<group>"; };
 		E6F5909A1E2C9B7B00619598 /* APIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = APIKit.framework; path = Carthage/Build/iOS/APIKit.framework; sourceTree = "<group>"; };
-		E6F5909C1E2CD37400619598 /* Books.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Books.swift; sourceTree = "<group>"; };
+		E6F5909C1E2CD37400619598 /* Books.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Books.swift; path = Models/Books.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -137,19 +145,12 @@
 			isa = PBXGroup;
 			children = (
 				E623F4C11E271DD400A9C630 /* AppDelegate.swift */,
-				E623F4C31E271DD400A9C630 /* ViewController.swift */,
+				E69A3E001E31A042004D7C43 /* Coordinators */,
+				E69A3DFF1E31A012004D7C43 /* Models */,
+				E69A3E011E31A04D004D7C43 /* UIs */,
+				E69A3E021E31A056004D7C43 /* Utilities */,
 				E623F4C81E271DD400A9C630 /* Assets.xcassets */,
-				E623F4CA1E271DD400A9C630 /* LaunchScreen.storyboard */,
 				E623F4CD1E271DD400A9C630 /* Info.plist */,
-				E66ED79C1E2C8AC900F30A19 /* Weather.swift */,
-				E6F5909C1E2CD37400619598 /* Books.swift */,
-				E6A27FDE1E2DBB0C000547D8 /* Book.swift */,
-				E6A27FE01E2DC195000547D8 /* Request.swift */,
-				E6A27FE41E2DCD0E000547D8 /* StoryboardInstantiatable.swift */,
-				E6A27FE61E2DE947000547D8 /* ViewController.storyboard */,
-				E6A27FE81E2DEB94000547D8 /* TestViewController.storyboard */,
-				E6A27FEA1E2DEBAD000547D8 /* TestViewController.swift */,
-				E6A27FEC1E2E0DCB000547D8 /* BookCell.swift */,
 			);
 			path = RAC_sandbox01;
 			sourceTree = "<group>";
@@ -181,6 +182,74 @@
 				E623F4F11E27815300A9C630 /* Result.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		E697FC6D1E31E1EF00DD2CD7 /* Stubs */ = {
+			isa = PBXGroup;
+			children = (
+				E697FC6E1E31E20A00DD2CD7 /* stub_search_book.json */,
+			);
+			name = Stubs;
+			path = Utilities/Stubs;
+			sourceTree = "<group>";
+		};
+		E69A3DFF1E31A012004D7C43 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				E69A3E041E31A06E004D7C43 /* Entities */,
+				E69A3E031E31A069004D7C43 /* APIManager */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		E69A3E001E31A042004D7C43 /* Coordinators */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Coordinators;
+			sourceTree = "<group>";
+		};
+		E69A3E011E31A04D004D7C43 /* UIs */ = {
+			isa = PBXGroup;
+			children = (
+				E623F4CA1E271DD400A9C630 /* LaunchScreen.storyboard */,
+				E6A27FE61E2DE947000547D8 /* ViewController.storyboard */,
+				E6A27FE81E2DEB94000547D8 /* TestViewController.storyboard */,
+				E6A27FEA1E2DEBAD000547D8 /* TestViewController.swift */,
+				E6A27FEC1E2E0DCB000547D8 /* BookCell.swift */,
+				E623F4C31E271DD400A9C630 /* ViewController.swift */,
+				E697FC741E32057B00DD2CD7 /* BookCellModel.swift */,
+				E697FC761E320CF800DD2CD7 /* BookCellModels.swift */,
+			);
+			name = UIs;
+			sourceTree = "<group>";
+		};
+		E69A3E021E31A056004D7C43 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				E697FC6D1E31E1EF00DD2CD7 /* Stubs */,
+				E6A27FE41E2DCD0E000547D8 /* StoryboardInstantiatable.swift */,
+			);
+			name = Utilities;
+			sourceTree = "<group>";
+		};
+		E69A3E031E31A069004D7C43 /* APIManager */ = {
+			isa = PBXGroup;
+			children = (
+				E6A27FE01E2DC195000547D8 /* Request.swift */,
+				E697FC721E31E9DB00DD2CD7 /* RequestStub.swift */,
+			);
+			name = APIManager;
+			sourceTree = "<group>";
+		};
+		E69A3E041E31A06E004D7C43 /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				E6F5909C1E2CD37400619598 /* Books.swift */,
+				E6A27FDE1E2DBB0C000547D8 /* Book.swift */,
+				E66ED79C1E2C8AC900F30A19 /* Weather.swift */,
+			);
+			name = Entities;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -293,6 +362,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E697FC6F1E31E20A00DD2CD7 /* stub_search_book.json in Resources */,
 				E623F4CC1E271DD400A9C630 /* LaunchScreen.storyboard in Resources */,
 				E623F4C91E271DD400A9C630 /* Assets.xcassets in Resources */,
 				E6A27FE71E2DE947000547D8 /* ViewController.storyboard in Resources */,
@@ -348,7 +418,10 @@
 				E623F4C41E271DD400A9C630 /* ViewController.swift in Sources */,
 				E6A27FE51E2DCD0E000547D8 /* StoryboardInstantiatable.swift in Sources */,
 				E66ED79D1E2C8AC900F30A19 /* Weather.swift in Sources */,
+				E697FC751E32057B00DD2CD7 /* BookCellModel.swift in Sources */,
+				E697FC731E31E9DB00DD2CD7 /* RequestStub.swift in Sources */,
 				E6A27FDF1E2DBB0C000547D8 /* Book.swift in Sources */,
+				E697FC771E320CF800DD2CD7 /* BookCellModels.swift in Sources */,
 				E623F4C21E271DD400A9C630 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
