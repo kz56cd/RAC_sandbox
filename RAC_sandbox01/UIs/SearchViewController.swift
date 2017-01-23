@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  SearchViewController.swift
 //  RAC_sandbox01
 //
 //  Created by msano on 2017/01/12.
@@ -13,7 +13,7 @@ import Result
 import APIKit
 
 
-class ViewController: UIViewController, StoryboardInstantiatable {
+class SearchViewController: UIViewController, StoryboardInstantiatable {
 
     @IBOutlet weak var label: UILabel!
     @IBOutlet weak var textField: UITextField!
@@ -71,8 +71,9 @@ class ViewController: UIViewController, StoryboardInstantiatable {
     }
 }
 
-extension ViewController: UITableViewDelegate {
+extension SearchViewController: UITableViewDelegate {
     internal func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("test 1")
         guard let cell = tableView.cellForRow(at: indexPath) as? BookCell else {
             return
         }
@@ -80,17 +81,20 @@ extension ViewController: UITableViewDelegate {
     }
 }
 
-extension ViewController: SFSafariViewControllerDelegate {
+extension SearchViewController: SFSafariViewControllerDelegate {
     func tryDispWebView(cell: BookCell) {
+        print("test 2")
         guard let url: URL = cell.getLink() else {
             return
         }
+        print("test 3")
         let safariVC = SFSafariViewController(url: url)
         self.present(safariVC, animated: true, completion: nil)
+        print("test 4")
     }
 }
 
-extension ViewController: UITableViewDataSource {
+extension SearchViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return booksCellModels?.cells?.count ?? 0
     }
@@ -128,7 +132,7 @@ extension ViewController: UITableViewDataSource {
     }
 }
 
-extension ViewController: UIScrollViewDelegate {
+extension SearchViewController: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         // スタブ
     }

@@ -10,11 +10,11 @@ import UIKit
 
 final class SearchCoordinator: CoordinatorType {
     var presenter: UIViewController {
-        return searchViewController as ViewController
+        return searchViewController as SearchViewController
     }
-    let searchViewController: ViewController
+    let searchViewController: SearchViewController
     
-    init(presenter: ViewController) {
+    init(presenter: SearchViewController) {
         searchViewController = presenter
     }
     

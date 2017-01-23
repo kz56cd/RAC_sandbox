@@ -13,7 +13,7 @@ class BookCell: UITableViewCell {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var publisherLabel: UILabel!
     
-    private var book: Book?
+    private var bookCellModel: BookCellModel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -23,14 +23,14 @@ class BookCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
 
-    func configure(cellModel: BookCellModelType) {
-        titleLabel.text = cellModel.title
-        publisherLabel.text = cellModel.publisher
+    func configure(cellModel: BookCellModel) {
+        bookCellModel = cellModel
+        titleLabel.text = bookCellModel?.title
+        publisherLabel.text = bookCellModel?.publisher
     }
     
     func getLink() -> URL? {
-        guard let book = book,
-            let urlStr: String = book.link else {
+        guard let urlStr: String = bookCellModel?.link else {
                 return URL(string: "")
         }
         return URL(string: urlStr)
