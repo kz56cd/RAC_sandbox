@@ -95,7 +95,6 @@
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
-                                    <outlet property="dataSource" destination="ZM8-pJ-Ytw" id="aYa-0O-Jwb"/>
                                     <outlet property="delegate" destination="ZM8-pJ-Ytw" id="CL3-8z-Qdd"/>
                                 </connections>
                             </tableView>

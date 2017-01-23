@@ -19,8 +19,8 @@ class SearchViewController: UIViewController, StoryboardInstantiatable {
     @IBOutlet weak var textField: UITextField!
     @IBOutlet weak var tableView: UITableView!
     
-    var booklist: [Book] = []
-    var booksCellModels: BookCellModels?
+    fileprivate var bookCellModels: BookCellModels?
+    fileprivate var datasource: SearchTableDataSource?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,7 +45,6 @@ class SearchViewController: UIViewController, StoryboardInstantiatable {
     // private
     
     private func initView() {
-//        sendBooksRequest(keyword: "java")
     }
     
     // Sending request
@@ -55,12 +54,18 @@ class SearchViewController: UIViewController, StoryboardInstantiatable {
         Session.send(request) { result in
             switch result {
             case .success(let books):
-                self.booksCellModels = BookCellModels.init(model: books.list)
-                self.reloadTableView()
+                self.configureResult(books: books)
             case .failure(let error):
                 print("error: \(error)")
             }
         }
+    }
+    
+    private func configureResult(books: Books) {
+        self.bookCellModels = BookCellModels.init(model: books.list)
+        self.datasource = SearchTableDataSource(cellModels: self.bookCellModels!)
+        self.tableView.dataSource = self.datasource
+        self.reloadTableView()
     }
     
     // for debug
@@ -69,11 +74,14 @@ class SearchViewController: UIViewController, StoryboardInstantiatable {
         let testViewController = TestViewController.instantiate()
         self.present(testViewController, animated: true, completion: nil)
     }
+    
+    private func reloadTableView() {
+        tableView.reloadData()
+    }
 }
 
 extension SearchViewController: UITableViewDelegate {
     internal func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("test 1")
         guard let cell = tableView.cellForRow(at: indexPath) as? BookCell else {
             return
         }
@@ -83,52 +91,11 @@ extension SearchViewController: UITableViewDelegate {
 
 extension SearchViewController: SFSafariViewControllerDelegate {
     func tryDispWebView(cell: BookCell) {
-        print("test 2")
         guard let url: URL = cell.getLink() else {
             return
         }
-        print("test 3")
         let safariVC = SFSafariViewController(url: url)
         self.present(safariVC, animated: true, completion: nil)
-        print("test 4")
-    }
-}
-
-extension SearchViewController: UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return booksCellModels?.cells?.count ?? 0
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return self.makeCell(tableView: tableView, cellForRowAtIndexPath: indexPath)
-    }
-
-    func initTableView() {
-        self.tableView?.register(UITableViewCell.self, forCellReuseIdentifier: "BookCell")
-    }
-    
-    // セル生成
-    private func makeCell(tableView: UITableView, cellForRowAtIndexPath indexPath: IndexPath) -> BookCell {
-        guard let cells = booksCellModels?.cells else {
-            return UITableViewCell() as! BookCell
-        }
-        if (booksCellModels?.cells?.count ?? 0) < indexPath.row {
-            return UITableViewCell() as! BookCell
-        }
-        
-        guard  let cell = tableView.dequeueReusableCell(withIdentifier: "BookCell", for: indexPath) as? BookCell else {
-            return UITableViewCell() as! BookCell
-        }
-        guard let bookCellModel: BookCellModel = cells[indexPath.row] else {
-            return UITableViewCell() as! BookCell
-        }
-        cell.selectionStyle  = UITableViewCellSelectionStyle.none
-        cell.configure(cellModel: bookCellModel)
-        return cell
-    }
-    
-    fileprivate func reloadTableView() {
-        tableView.reloadData()
     }
 }
 
