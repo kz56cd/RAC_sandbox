@@ -9,52 +9,6 @@
 import Foundation
 import APIKit
 
-// TODO:
-// http://ci.nii.ac.jp/books/opensearch/search?q={*検索ワード}
-// 上記の図書館蔵書検索のapiを利用する
-
-//struct WeatherData {
-//    var title: String = ""
-//    var descripton: String = ""
-//    var today: String = ""
-//    var tomorrow: String = ""
-//    
-//    init? (dictionary: [String: Any]) {
-//        guard let title = dictionary["title"] as? String else {
-//            return nil
-//        }
-//        guard let descriptonArray = dictionary["description"] as? [String: Any] else {
-//            return nil
-//        }
-//        guard let descripton = descriptonArray["text"] as? String else {
-//            return
-//        }
-//        self.descripton = descripton
-//        
-////        guard let array = dictionary["forecast"] as? NSArray else {
-////            return nil
-////        }
-////        for a in array {
-////            if let dateLabel = a["dataLabel"] as? String {
-////                if dateLabel == "今日" {
-////                    guard let today = a["telop"] as? String else {
-////                        return nil
-////                    }
-////                    self.today = today
-////                } else if dateLabel == "明日" {
-////                    guard let today = a["telop"] as? String else {
-////                        return nil
-////                    }
-////                    self.tomorrow = tomorrow
-////                }
-////            }
-////        }
-//        
-//        self.title = title
-//        self.descripton = descripton
-//    }
-//}
-
 
 // ====== DataModel ======
 

@@ -12,8 +12,9 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    private var viewController: ViewController?
 
+    var appCoordinator: AppCoordinator?
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         appStart()
         return true
@@ -44,9 +45,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // private
     
     private func appStart() {
-        self.viewController = ViewController.instantiate()
-        self.window?.rootViewController = viewController
-//        currentKeyWindow.value = .Main
+        window = UIWindow(frame: UIScreen.main.bounds)
+        
+        // MEMO: 更にfactoryクラスに生成を委譲していた
+        appCoordinator = AppCoordinator.init(window: window!)
+        appCoordinator?.start()
     }
 }
 

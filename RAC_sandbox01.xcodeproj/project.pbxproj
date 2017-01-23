@@ -14,6 +14,9 @@
 		E623F4D71E271DD400A9C630 /* RAC_sandbox01Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E623F4D61E271DD400A9C630 /* RAC_sandbox01Tests.swift */; };
 		E623F4E21E271DD400A9C630 /* RAC_sandbox01UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E623F4E11E271DD400A9C630 /* RAC_sandbox01UITests.swift */; };
 		E623F4F21E27815300A9C630 /* ReactiveSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E623F4F01E27815300A9C630 /* ReactiveSwift.framework */; };
+		E63C59AD1E35A3E50081913C /* CoordinatorType.swift in Sources */ = {isa = PBXBuildFile; fileRef = E63C59AC1E35A3E50081913C /* CoordinatorType.swift */; };
+		E63C59B11E35A7FC0081913C /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E63C59B01E35A7FC0081913C /* AppCoordinator.swift */; };
+		E63C59B31E35A8BC0081913C /* SearchCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E63C59B21E35A8BC0081913C /* SearchCoordinator.swift */; };
 		E66ED79D1E2C8AC900F30A19 /* Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = E66ED79C1E2C8AC900F30A19 /* Weather.swift */; };
 		E66ED7A41E2C9A2A00F30A19 /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E623F4F11E27815300A9C630 /* Result.framework */; };
 		E697FC6F1E31E20A00DD2CD7 /* stub_search_book.json in Resources */ = {isa = PBXBuildFile; fileRef = E697FC6E1E31E20A00DD2CD7 /* stub_search_book.json */; };
@@ -75,6 +78,9 @@
 		E623F4E31E271DD400A9C630 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E623F4F01E27815300A9C630 /* ReactiveSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ReactiveSwift.framework; path = Carthage/Build/iOS/ReactiveSwift.framework; sourceTree = "<group>"; };
 		E623F4F11E27815300A9C630 /* Result.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Result.framework; path = Carthage/Build/iOS/Result.framework; sourceTree = "<group>"; };
+		E63C59AC1E35A3E50081913C /* CoordinatorType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoordinatorType.swift; sourceTree = "<group>"; };
+		E63C59B01E35A7FC0081913C /* AppCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
+		E63C59B21E35A8BC0081913C /* SearchCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchCoordinator.swift; sourceTree = "<group>"; };
 		E66ED79C1E2C8AC900F30A19 /* Weather.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Weather.swift; path = Models/Weather.swift; sourceTree = "<group>"; };
 		E66ED79E1E2C98C200F30A19 /* APIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = APIKit.framework; path = Carthage/Build/Mac/APIKit.framework; sourceTree = "<group>"; };
 		E697FC6E1E31E20A00DD2CD7 /* stub_search_book.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = stub_search_book.json; sourceTree = "<group>"; };
@@ -205,6 +211,9 @@
 		E69A3E001E31A042004D7C43 /* Coordinators */ = {
 			isa = PBXGroup;
 			children = (
+				E63C59AC1E35A3E50081913C /* CoordinatorType.swift */,
+				E63C59B01E35A7FC0081913C /* AppCoordinator.swift */,
+				E63C59B21E35A8BC0081913C /* SearchCoordinator.swift */,
 			);
 			path = Coordinators;
 			sourceTree = "<group>";
@@ -412,11 +421,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				E6A27FED1E2E0DCB000547D8 /* BookCell.swift in Sources */,
+				E63C59B31E35A8BC0081913C /* SearchCoordinator.swift in Sources */,
 				E6F5909D1E2CD37400619598 /* Books.swift in Sources */,
 				E6A27FE11E2DC195000547D8 /* Request.swift in Sources */,
 				E6A27FEB1E2DEBAD000547D8 /* TestViewController.swift in Sources */,
 				E623F4C41E271DD400A9C630 /* ViewController.swift in Sources */,
 				E6A27FE51E2DCD0E000547D8 /* StoryboardInstantiatable.swift in Sources */,
+				E63C59B11E35A7FC0081913C /* AppCoordinator.swift in Sources */,
+				E63C59AD1E35A3E50081913C /* CoordinatorType.swift in Sources */,
 				E66ED79D1E2C8AC900F30A19 /* Weather.swift in Sources */,
 				E697FC751E32057B00DD2CD7 /* BookCellModel.swift in Sources */,
 				E697FC731E31E9DB00DD2CD7 /* RequestStub.swift in Sources */,

@@ -123,7 +123,7 @@ extension ViewController: UITableViewDataSource {
         return cell
     }
     
-    func reloadTableView() {
+    fileprivate func reloadTableView() {
         tableView.reloadData()
     }
 }
