@@ -57,6 +57,7 @@ class SearchViewController: UIViewController, StoryboardInstantiatable {
                 self.configureResult(books: books)
             case .failure(let error):
                 print("error: \(error)")
+                self.showErrorAlert()
             }
         }
     }
@@ -66,6 +67,15 @@ class SearchViewController: UIViewController, StoryboardInstantiatable {
         self.datasource = SearchTableDataSource(cellModels: self.bookCellModels!)
         self.tableView.dataSource = self.datasource
         self.reloadTableView()
+    }
+    
+    // for Alert
+    
+    private func showErrorAlert() {
+        let alertController = AlertFactory.makeNetworkErrorAlert()
+        alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: { [weak self] _ in
+        }))
+        present(alertController, animated: true, completion: nil)
     }
     
     // for debug

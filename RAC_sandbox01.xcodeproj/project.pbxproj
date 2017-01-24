@@ -31,6 +31,7 @@
 		E6A27FE91E2DEB94000547D8 /* TestViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E6A27FE81E2DEB94000547D8 /* TestViewController.storyboard */; };
 		E6A27FEB1E2DEBAD000547D8 /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6A27FEA1E2DEBAD000547D8 /* TestViewController.swift */; };
 		E6A27FED1E2E0DCB000547D8 /* BookCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6A27FEC1E2E0DCB000547D8 /* BookCell.swift */; };
+		E6A4AC161E3703F700108841 /* AlertFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6A4AC151E3703F700108841 /* AlertFactory.swift */; };
 		E6F5909B1E2C9B7B00619598 /* APIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E6F5909A1E2C9B7B00619598 /* APIKit.framework */; };
 		E6F5909D1E2CD37400619598 /* Books.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6F5909C1E2CD37400619598 /* Books.swift */; };
 /* End PBXBuildFile section */
@@ -96,6 +97,7 @@
 		E6A27FE81E2DEB94000547D8 /* TestViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = TestViewController.storyboard; path = UIs/TestViewController.storyboard; sourceTree = "<group>"; };
 		E6A27FEA1E2DEBAD000547D8 /* TestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TestViewController.swift; path = UIs/TestViewController.swift; sourceTree = "<group>"; };
 		E6A27FEC1E2E0DCB000547D8 /* BookCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BookCell.swift; path = UIs/BookCell.swift; sourceTree = "<group>"; };
+		E6A4AC151E3703F700108841 /* AlertFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertFactory.swift; sourceTree = "<group>"; };
 		E6F5909A1E2C9B7B00619598 /* APIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = APIKit.framework; path = Carthage/Build/iOS/APIKit.framework; sourceTree = "<group>"; };
 		E6F5909C1E2CD37400619598 /* Books.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Books.swift; path = Models/Books.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -213,6 +215,7 @@
 		E69A3E001E31A042004D7C43 /* Coordinators */ = {
 			isa = PBXGroup;
 			children = (
+				E6A4AC171E3704B200108841 /* Factory */,
 				E63C59AC1E35A3E50081913C /* CoordinatorType.swift */,
 				E63C59B01E35A7FC0081913C /* AppCoordinator.swift */,
 				E63C59B21E35A8BC0081913C /* SearchCoordinator.swift */,
@@ -262,6 +265,14 @@
 				E66ED79C1E2C8AC900F30A19 /* Weather.swift */,
 			);
 			name = Entities;
+			sourceTree = "<group>";
+		};
+		E6A4AC171E3704B200108841 /* Factory */ = {
+			isa = PBXGroup;
+			children = (
+				E6A4AC151E3703F700108841 /* AlertFactory.swift */,
+			);
+			path = Factory;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -424,6 +435,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E6A27FED1E2E0DCB000547D8 /* BookCell.swift in Sources */,
+				E6A4AC161E3703F700108841 /* AlertFactory.swift in Sources */,
 				E63C59B31E35A8BC0081913C /* SearchCoordinator.swift in Sources */,
 				E6F5909D1E2CD37400619598 /* Books.swift in Sources */,
 				E6A27FE11E2DC195000547D8 /* Request.swift in Sources */,
