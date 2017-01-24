@@ -40,11 +40,8 @@ extension SearchTableDataSource: UITableViewDataSource {
         guard  let cell = tableView.dequeueReusableCell(withIdentifier: "BookCell", for: indexPath) as? BookCell else {
             return UITableViewCell() as! BookCell
         }
-        guard let bookCellModel: BookCellModel = cells[indexPath.row] else {
-            return UITableViewCell() as! BookCell
-        }
         cell.selectionStyle  = UITableViewCellSelectionStyle.none
-        cell.configure(cellModel: bookCellModel)
+        cell.configure(cellModel: cells[indexPath.row])
         return cell
     }
 }

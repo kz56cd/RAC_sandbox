@@ -17,13 +17,8 @@ struct BookCellModels: BookCellModelsType {
     let cells: [BookCellModel]?
     init(model: [Book]) {
         cells = []
-        
         for book: Book in model {
-//            guard let cell: BookCellModel = BookCellModel.init(model: book) else {
-            guard let cell = BookCellModel.init(model: book) as? BookCellModel else {
-                return
-            }
-            self.cells?.append(cell)
+            self.cells?.append(BookCellModel.init(model: book))
         }
     }
 }
