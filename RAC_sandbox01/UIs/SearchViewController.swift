@@ -91,9 +91,7 @@ extension SearchViewController: UITableViewDelegate {
 
 extension SearchViewController: SFSafariViewControllerDelegate {
     func tryDispWebView(cell: BookCell) {
-        guard let url: URL = cell.getLink() else {
-            return
-        }
+        let url: URL = cell.getLink()
         let safariVC = SFSafariViewController(url: url)
         self.present(safariVC, animated: true, completion: nil)
     }

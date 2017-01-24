@@ -29,10 +29,7 @@ class BookCell: UITableViewCell {
         publisherLabel.text = bookCellModel?.publisher
     }
     
-    func getLink() -> URL? {
-        guard let urlStr: String = bookCellModel?.link else {
-                return URL(string: "")
-        }
-        return URL(string: urlStr)
+    func getLink() -> URL {
+        return bookCellModel.link
     }
 }

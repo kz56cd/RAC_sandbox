@@ -11,7 +11,7 @@ import Foundation
 protocol BookCellModelType {
     var title: String? { get }
     var publisher: String? { get }
-    var link: String? { get }
+    var linkStr: String? { get }
     var bookModel: Book? { get }
     init(model: Book)
 }
@@ -19,12 +19,29 @@ protocol BookCellModelType {
 struct BookCellModel: BookCellModelType {
     let title: String?
     let publisher: String?
-    let link: String?
+    let linkStr: String?
     let bookModel: Book?
     init(model: Book) {
         title = model.title
         publisher = model.publisher
-        link = model.link
+        linkStr = model.link
         bookModel = model
     }
+    
+//    func getLink() -> URL? {
+//        guard let urlStr: String = link else {
+//            return URL(string: "")
+//        }
+//        return URL(string: urlStr)
+//    }
+    
+    var link: URL {
+        get {
+            guard let urlStr: String = linkStr else {
+                return URL(string: "")!
+            }
+            return URL(string: urlStr)!
+        }
+    }
+
 }
