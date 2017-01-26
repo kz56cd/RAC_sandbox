@@ -21,6 +21,7 @@
 		E6512EC81E39BB8800758242 /* XibInstantiatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6512EC71E39BB8800758242 /* XibInstantiatable.swift */; };
 		E6512ECA1E39BBCE00758242 /* UIFont+Hiragino.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6512EC91E39BBCE00758242 /* UIFont+Hiragino.swift */; };
 		E6512ECC1E39BC1000758242 /* UIImage+Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6512ECB1E39BC1000758242 /* UIImage+Color.swift */; };
+		E6512ECF1E39E19400758242 /* CustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6512ECE1E39E19400758242 /* CustomView.swift */; };
 		E66ED79D1E2C8AC900F30A19 /* Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = E66ED79C1E2C8AC900F30A19 /* Weather.swift */; };
 		E66ED7A41E2C9A2A00F30A19 /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E623F4F11E27815300A9C630 /* Result.framework */; };
 		E697FC6F1E31E20A00DD2CD7 /* stub_search_book.json in Resources */ = {isa = PBXBuildFile; fileRef = E697FC6E1E31E20A00DD2CD7 /* stub_search_book.json */; };
@@ -90,6 +91,7 @@
 		E6512EC71E39BB8800758242 /* XibInstantiatable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XibInstantiatable.swift; path = Utilities/XibInstantiatable.swift; sourceTree = "<group>"; };
 		E6512EC91E39BBCE00758242 /* UIFont+Hiragino.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIFont+Hiragino.swift"; path = "Utilities/UIFont+Hiragino.swift"; sourceTree = "<group>"; };
 		E6512ECB1E39BC1000758242 /* UIImage+Color.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIImage+Color.swift"; path = "Utilities/UIImage+Color.swift"; sourceTree = "<group>"; };
+		E6512ECE1E39E19400758242 /* CustomView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomView.swift; sourceTree = "<group>"; };
 		E66ED79C1E2C8AC900F30A19 /* Weather.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Weather.swift; path = Models/Weather.swift; sourceTree = "<group>"; };
 		E66ED79E1E2C98C200F30A19 /* APIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = APIKit.framework; path = Carthage/Build/Mac/APIKit.framework; sourceTree = "<group>"; };
 		E697FC6E1E31E20A00DD2CD7 /* stub_search_book.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = stub_search_book.json; sourceTree = "<group>"; };
@@ -200,6 +202,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		E6512ECD1E39E18A00758242 /* CustomParts */ = {
+			isa = PBXGroup;
+			children = (
+				E6512ECE1E39E19400758242 /* CustomView.swift */,
+			);
+			name = CustomParts;
+			path = UIs/CustomParts;
+			sourceTree = "<group>";
+		};
 		E697FC6D1E31E1EF00DD2CD7 /* Stubs */ = {
 			isa = PBXGroup;
 			children = (
@@ -232,6 +243,7 @@
 		E69A3E011E31A04D004D7C43 /* UIs */ = {
 			isa = PBXGroup;
 			children = (
+				E6512ECD1E39E18A00758242 /* CustomParts */,
 				E623F4CA1E271DD400A9C630 /* LaunchScreen.storyboard */,
 				E6A27FE61E2DE947000547D8 /* SearchViewController.storyboard */,
 				E6A27FE81E2DEB94000547D8 /* TestViewController.storyboard */,
@@ -446,6 +458,7 @@
 				E6A27FED1E2E0DCB000547D8 /* BookCell.swift in Sources */,
 				E6A4AC161E3703F700108841 /* AlertFactory.swift in Sources */,
 				E6512EC81E39BB8800758242 /* XibInstantiatable.swift in Sources */,
+				E6512ECF1E39E19400758242 /* CustomView.swift in Sources */,
 				E63C59B31E35A8BC0081913C /* SearchCoordinator.swift in Sources */,
 				E6F5909D1E2CD37400619598 /* Books.swift in Sources */,
 				E6A27FE11E2DC195000547D8 /* Request.swift in Sources */,

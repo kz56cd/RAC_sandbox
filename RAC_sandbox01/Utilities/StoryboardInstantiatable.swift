@@ -16,12 +16,3 @@ extension StoryboardInstantiatable {
         return storyBoard.instantiateInitialViewController() as! Self // swiftlint:disable:this force_cast
     }
 }
-
-// TODO
-// 確認する
-//extension StoryboardInstantiatable {
-//    static func instantiate() -> Self {
-//        let storyBoard = UIStoryboard(name: String(Self), bundle: nil)
-//        return storyBoard.instantiateInitialViewController() as! Self // swiftlint:disable:this force_cast
-//    }
-//}
