@@ -12,7 +12,6 @@ import ReactiveSwift
 import Result
 import APIKit
 
-
 class SearchViewController: UIViewController, StoryboardInstantiatable {
 
     @IBOutlet weak var label: UILabel!
@@ -21,6 +20,10 @@ class SearchViewController: UIViewController, StoryboardInstantiatable {
     
     fileprivate var bookCellModels: BookCellModels?
     fileprivate var datasource: SearchTableDataSource?
+    
+    
+    private var action: Action<String, String, NoError>?
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,25 +37,54 @@ class SearchViewController: UIViewController, StoryboardInstantiatable {
     
     // Action
     
-    @IBAction func buttonTapped(_ sender: UIButton) {
-        // moveTestVC()
-        guard let keyword = textField.text else {
-            return
-        }
-        sendBooksRequest(keyword: keyword)
-    }
-    
-    @IBAction func textDidChanged(_ sender: UITextField) {
-        print("textDidChanged")
+//    @IBAction func buttonTapped(_ sender: UIButton) {
+//        // moveTestVC()
 //        guard let keyword = textField.text else {
 //            return
 //        }
 //        sendBooksRequest(keyword: keyword)
+//    }
+    
+    @IBAction func textDidChanged(_ sender: UITextField) {
+        guard let keyword = sender.text else {
+            return
+        }
+//        guard let signalProducer: SignalProducer<String, NoError> = action?.apply(keyword) as SignalProducer<String, NoError> else {
+//            print("駄目です")
+//            return
+//        }
+        action?.apply(keyword).startWithResult { result in
+            switch result {
+            case let .success(value):
+                print("value: \(value)")
+            case let .failure(error):
+                print("error: \(error)")
+            }
+        }
+        
     }
     
     // private
     
     private func initView() {
+        
+        action = Action<String, String, NoError> { (word) -> SignalProducer<String, NoError> in
+            return SignalProducer<String, NoError> { (observer, disposable) in
+                observer.send(value: word)
+                observer.sendCompleted()
+            }
+        }
+        
+        action?.values.observeValues({ value in
+            print("value: \(value)")
+            print("来てます")
+            
+            // TODO
+            // RAC apiに置き換える
+            if value.characters.count >= 1 {
+                self.sendBooksRequest(keyword: value)
+            }
+        })
     }
     
     // Sending request

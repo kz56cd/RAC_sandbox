@@ -30,7 +30,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="66"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="5mE-f8-Zh3" id="viA-Nw-MRh">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="66"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="65.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="UeV-oS-tAh">
@@ -70,7 +70,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="70"/>
                                 <subviews>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="検索したい本のタイトルを入力" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="UNB-XY-cJl">
-                                        <rect key="frame" x="8" y="22" width="305" height="45"/>
+                                        <rect key="frame" x="8" y="22" width="359" height="45"/>
                                         <color key="textColor" red="0.26559749119718312" green="0.26559749119718312" blue="0.26559749119718312" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
@@ -79,26 +79,13 @@
                                             <outlet property="delegate" destination="ZM8-pJ-Ytw" id="EVo-dX-ePL"/>
                                         </connections>
                                     </textField>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xxX-qT-kZL">
-                                        <rect key="frame" x="321" y="22" width="46" height="37"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="46" id="p0V-NJ-lkj"/>
-                                        </constraints>
-                                        <state key="normal" title="Button"/>
-                                        <connections>
-                                            <action selector="buttonTapped:" destination="ZM8-pJ-Ytw" eventType="touchUpInside" id="Wqt-Xg-kgL"/>
-                                        </connections>
-                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="UNB-XY-cJl" firstAttribute="leading" secondItem="xcR-gw-SL4" secondAttribute="leading" constant="8" id="HNy-kS-Y4x"/>
                                     <constraint firstAttribute="bottom" secondItem="UNB-XY-cJl" secondAttribute="bottom" constant="3" id="ImO-QY-OFU"/>
-                                    <constraint firstItem="xxX-qT-kZL" firstAttribute="top" secondItem="xcR-gw-SL4" secondAttribute="top" constant="22" id="PWh-eD-frz"/>
-                                    <constraint firstItem="xxX-qT-kZL" firstAttribute="leading" secondItem="UNB-XY-cJl" secondAttribute="trailing" constant="8" id="SIG-hH-ESA"/>
+                                    <constraint firstAttribute="trailing" secondItem="UNB-XY-cJl" secondAttribute="trailing" constant="8" id="JTx-RW-RVc"/>
                                     <constraint firstItem="UNB-XY-cJl" firstAttribute="top" secondItem="xcR-gw-SL4" secondAttribute="top" constant="22" id="SPl-qf-kCT"/>
-                                    <constraint firstAttribute="trailing" secondItem="xxX-qT-kZL" secondAttribute="trailing" constant="8" id="dMN-Qq-PIM"/>
-                                    <constraint firstAttribute="bottom" secondItem="xxX-qT-kZL" secondAttribute="bottom" constant="11" id="dOl-4h-KPn"/>
                                     <constraint firstAttribute="height" constant="70" id="iub-sG-gO1"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
