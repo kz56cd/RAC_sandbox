@@ -42,6 +42,14 @@ class SearchViewController: UIViewController, StoryboardInstantiatable {
         sendBooksRequest(keyword: keyword)
     }
     
+    @IBAction func textDidChanged(_ sender: UITextField) {
+        print("textDidChanged")
+//        guard let keyword = textField.text else {
+//            return
+//        }
+//        sendBooksRequest(keyword: keyword)
+    }
+    
     // private
     
     private func initView() {
@@ -110,5 +118,12 @@ extension SearchViewController: SFSafariViewControllerDelegate {
 extension SearchViewController: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         // スタブ
+    }
+}
+
+extension SearchViewController: UITextFieldDelegate {
+    func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
+        print("textFieldShouldEndEditing")
+        return true
     }
 }
