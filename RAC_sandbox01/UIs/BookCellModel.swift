@@ -28,13 +28,6 @@ struct BookCellModel: BookCellModelType {
         bookModel = model
     }
     
-//    func getLink() -> URL? {
-//        guard let urlStr: String = link else {
-//            return URL(string: "")
-//        }
-//        return URL(string: urlStr)
-//    }
-    
     var link: URL {
         get {
             guard let urlStr: String = linkStr else {
@@ -43,5 +36,4 @@ struct BookCellModel: BookCellModelType {
             return URL(string: urlStr)!
         }
     }
-
 }

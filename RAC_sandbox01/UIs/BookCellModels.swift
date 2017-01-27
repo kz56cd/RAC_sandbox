@@ -40,59 +40,12 @@ struct BookCellModels: BookCellModelsType {
         
         // mod RAC
         
-//        let scheduler = QueueScheduler(name: "search.backgroundQueue")
-//        let dataSourceGenerator = BookCellModels.generateDataSource().start(on: scheduler)
-//        
-//        // TODO:
-//        // resultとしてmap以下でapiリクエストを送るようにする
-//        let producer = SignalProducer
-//            .combineLatest(keyword.producer, dataSourceGenerator)
-//            .throttle(0.3, on: scheduler)
-//            .map(BookCellModels.wordsSubSet)
-//        
-//        result = Property(initial: [], then: producer)
-        
-//       keyword.producer.startWithSignal { value in
-//            if (value.characters.count >= 1) {
-//                
-//            }
-//        }
-        
 //        var selfObj = self
 //        keyword.producer.startWithValues { value in
 //            if value.characters.count >= 1 {
 //                self.validation = MutableProperty(true)
 //            }
 //        }
-        
-        
-        
-//        action = Action.init(enabledIf: validation, { value in
-//            return SignalProducer { (observer, disposable) in
-//                print("action: " + selfObj.keyword.value)
-////                observer.
-//            }
-//        })
-//        action = Action.init(enabledIf: validation, { value -> SignalProducer<Void, [BookCellModel], BookError> in
-//            return SignalProducer<[BookCellModel], BookError> { (observer, disposable) in
-//                    observer.send
-//            }
-//        })
-        
-//        action = Action<Void, [BookCellModel], BookError> (enabledIf: validation, { _ -> SignalProducer<_, _> in
-
-        
-//        action = Action<Void, Void, NoError> (enabledIf: validation, { [weak self] _ -> SignalProducer<Void, NoError> in
-//            return SignalProducer<Void, NoError> { (observer, disposable) in
-//                observer.send(value: "")
-//                observer.sendCompleted()
-//            }
-//        })
-        
-        
-        
-        
-        
         
 // OK
         

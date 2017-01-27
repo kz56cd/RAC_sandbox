@@ -20,8 +20,6 @@ class SearchViewController: UIViewController, StoryboardInstantiatable {
     
     fileprivate var bookCellModels: BookCellModels?
     fileprivate var datasource: SearchTableDataSource?
-    
-    
     private var action: Action<String, String, NoError>?
 
     
@@ -37,22 +35,10 @@ class SearchViewController: UIViewController, StoryboardInstantiatable {
     
     // Action
     
-//    @IBAction func buttonTapped(_ sender: UIButton) {
-//        // moveTestVC()
-//        guard let keyword = textField.text else {
-//            return
-//        }
-//        sendBooksRequest(keyword: keyword)
-//    }
-    
     @IBAction func textDidChanged(_ sender: UITextField) {
         guard let keyword = sender.text else {
             return
         }
-//        guard let signalProducer: SignalProducer<String, NoError> = action?.apply(keyword) as SignalProducer<String, NoError> else {
-//            print("駄目です")
-//            return
-//        }
         action?.apply(keyword).startWithResult { result in
             switch result {
             case let .success(value):
@@ -77,7 +63,6 @@ class SearchViewController: UIViewController, StoryboardInstantiatable {
         
         action?.values.observeValues({ value in
             print("value: \(value)")
-            print("来てます")
             
             // TODO
             // RAC apiに置き換える
