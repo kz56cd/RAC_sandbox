@@ -11,6 +11,7 @@ import UIKit
 import ReactiveSwift
 import Result
 import APIKit
+import PKHUD
 
 class SearchViewController: UIViewController, StoryboardInstantiatable {
 
@@ -30,6 +31,12 @@ class SearchViewController: UIViewController, StoryboardInstantiatable {
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        if textField.isFirstResponder {
+            textField.resignFirstResponder()
+        }
     }
     
     // Action
@@ -63,7 +70,7 @@ class SearchViewController: UIViewController, StoryboardInstantiatable {
         }
         
         action?.values
-            .debounce(1.0, on: QueueScheduler.main)
+            .debounce(0.8, on: QueueScheduler.main)
             .observeValues({ value in
             print("value: \(value)")
             
@@ -78,6 +85,8 @@ class SearchViewController: UIViewController, StoryboardInstantiatable {
     // Sending request
     
     private func sendBooksRequest(keyword: String) {
+        HUD.flash(.progress, delay: 0.2)
+        
         let request = GetBooksRequest(keyword: keyword)
         Session.send(request) { result in
             switch result {
@@ -95,6 +104,7 @@ class SearchViewController: UIViewController, StoryboardInstantiatable {
         self.datasource = SearchTableDataSource(cellModels: self.bookCellModels!)
         self.tableView.dataSource = self.datasource
         self.reloadTableView()
+        HUD.flash(.success, delay: 1.6)
     }
     
     // for Alert
@@ -142,8 +152,8 @@ extension SearchViewController: UIScrollViewDelegate {
 }
 
 extension SearchViewController: UITextFieldDelegate {
-    func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
-        print("textFieldShouldEndEditing")
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
         return true
     }
 }
