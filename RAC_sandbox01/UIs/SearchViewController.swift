@@ -133,6 +133,19 @@ extension SearchViewController: UITableViewDelegate {
         }
         tryDispWebView(cell: cell)
     }
+
+//    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+//        
+//        print("viewForHeaderInSection")
+//        
+//        let header = UILabel(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 22))
+//        header.text = "0件"
+//        return header
+//    }
+//    
+//    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+//        return 22
+//    }
 }
 
 extension SearchViewController: SFSafariViewControllerDelegate {
