@@ -21,7 +21,6 @@ class SearchViewController: UIViewController, StoryboardInstantiatable {
     fileprivate var bookCellModels: BookCellModels?
     fileprivate var datasource: SearchTableDataSource?
     private var action: Action<String, String, NoError>?
-
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,12 +38,14 @@ class SearchViewController: UIViewController, StoryboardInstantiatable {
         guard let keyword = sender.text else {
             return
         }
-        action?.apply(keyword).startWithResult { result in
-            switch result {
-            case let .success(value):
-                print("value: \(value)")
-            case let .failure(error):
-                print("error: \(error)")
+        action?.apply(keyword)
+            .debounce(1.0, on: QueueScheduler.main)
+            .startWithResult { result in
+                switch result {
+                case let .success(value):
+                    print("success value: \(value)")
+                case let .failure(error):
+                    print("error: \(error)")
             }
         }
         
@@ -61,7 +62,9 @@ class SearchViewController: UIViewController, StoryboardInstantiatable {
             }
         }
         
-        action?.values.observeValues({ value in
+        action?.values
+            .debounce(1.0, on: QueueScheduler.main)
+            .observeValues({ value in
             print("value: \(value)")
             
             // TODO
