@@ -17,6 +17,7 @@ class SearchViewController: UIViewController, StoryboardInstantiatable {
 
     @IBOutlet weak var label: UILabel!
     @IBOutlet weak var textField: UITextField!
+    @IBOutlet weak var clearButton: UIButton!
     @IBOutlet weak var tableView: UITableView!
     
     fileprivate var bookCellModels: BookCellModels?
@@ -45,17 +46,14 @@ class SearchViewController: UIViewController, StoryboardInstantiatable {
         guard let keyword = sender.text else {
             return
         }
+        clearButton.isHidden = keyword.characters.count == 0
         action?.apply(keyword)
-            .debounce(1.0, on: QueueScheduler.main)
-            .startWithResult { result in
-                switch result {
-                case let .success(value):
-                    print("success value: \(value)")
-                case let .failure(error):
-                    print("error: \(error)")
-            }
-        }
-        
+            .start()
+    }
+    
+    @IBAction func clearButtonTapped(_ sender: UIButton) {
+        textField.text = ""
+        clearButton.isHidden = true
     }
     
     // private
@@ -64,16 +62,15 @@ class SearchViewController: UIViewController, StoryboardInstantiatable {
         
         action = Action<String, String, NoError> { (word) -> SignalProducer<String, NoError> in
             return SignalProducer<String, NoError> { (observer, disposable) in
+                print("word: \(word)")
                 observer.send(value: word)
                 observer.sendCompleted()
             }
         }
         
         action?.values
-            .debounce(0.8, on: QueueScheduler.main)
+            .debounce(1.0, on: QueueScheduler.main)
             .observeValues({ value in
-            print("value: \(value)")
-            
             // TODO
             // RAC apiに置き換える
             if value.characters.count >= 1 {
@@ -88,6 +85,7 @@ class SearchViewController: UIViewController, StoryboardInstantiatable {
         HUD.flash(.progress, delay: 0.2)
         
         let request = GetBooksRequest(keyword: keyword)
+        print("requst keyword: \(keyword)")
         Session.send(request) { result in
             switch result {
             case .success(let books):

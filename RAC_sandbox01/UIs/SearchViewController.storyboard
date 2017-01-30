@@ -79,14 +79,27 @@
                                             <outlet property="delegate" destination="ZM8-pJ-Ytw" id="EVo-dX-ePL"/>
                                         </connections>
                                     </textField>
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Iir-xy-UBf">
+                                        <rect key="frame" x="347" y="36" width="16" height="16"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="16" id="NTY-RN-w1O"/>
+                                            <constraint firstAttribute="width" constant="16" id="sFo-NP-oWB"/>
+                                        </constraints>
+                                        <state key="normal" title="Button" image="btn_clear"/>
+                                        <connections>
+                                            <action selector="clearButtonTapped:" destination="ZM8-pJ-Ytw" eventType="touchUpInside" id="0Ye-tT-rI7"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="UNB-XY-cJl" firstAttribute="leading" secondItem="xcR-gw-SL4" secondAttribute="leading" constant="8" id="HNy-kS-Y4x"/>
                                     <constraint firstAttribute="bottom" secondItem="UNB-XY-cJl" secondAttribute="bottom" constant="3" id="ImO-QY-OFU"/>
                                     <constraint firstAttribute="trailing" secondItem="UNB-XY-cJl" secondAttribute="trailing" constant="8" id="JTx-RW-RVc"/>
+                                    <constraint firstItem="Iir-xy-UBf" firstAttribute="centerY" secondItem="UNB-XY-cJl" secondAttribute="centerY" id="M00-MP-7Vc"/>
                                     <constraint firstItem="UNB-XY-cJl" firstAttribute="top" secondItem="xcR-gw-SL4" secondAttribute="top" constant="22" id="SPl-qf-kCT"/>
                                     <constraint firstAttribute="height" constant="70" id="iub-sG-gO1"/>
+                                    <constraint firstAttribute="trailing" secondItem="Iir-xy-UBf" secondAttribute="trailing" constant="12" id="qUO-7e-apO"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
@@ -119,6 +132,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="clearButton" destination="Iir-xy-UBf" id="gMd-a6-Cyr"/>
                         <outlet property="tableView" destination="vDV-c6-feL" id="haC-2C-XZz"/>
                         <outlet property="textField" destination="UNB-XY-cJl" id="F3P-BU-lM9"/>
                     </connections>
@@ -128,4 +142,7 @@
             <point key="canvasLocation" x="-47.200000000000003" y="-136.28185907046478"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="btn_clear" width="20" height="20"/>
+    </resources>
 </document>
