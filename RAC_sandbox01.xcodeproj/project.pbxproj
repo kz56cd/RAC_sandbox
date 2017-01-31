@@ -14,6 +14,7 @@
 		E623F4D71E271DD400A9C630 /* RAC_sandbox01Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E623F4D61E271DD400A9C630 /* RAC_sandbox01Tests.swift */; };
 		E623F4E21E271DD400A9C630 /* RAC_sandbox01UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E623F4E11E271DD400A9C630 /* RAC_sandbox01UITests.swift */; };
 		E623F4F21E27815300A9C630 /* ReactiveSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E623F4F01E27815300A9C630 /* ReactiveSwift.framework */; };
+		E63B3FEA1E40956B0089750F /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E63B3FE91E40956B0089750F /* SearchViewModel.swift */; };
 		E63C59AD1E35A3E50081913C /* CoordinatorType.swift in Sources */ = {isa = PBXBuildFile; fileRef = E63C59AC1E35A3E50081913C /* CoordinatorType.swift */; };
 		E63C59B11E35A7FC0081913C /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E63C59B01E35A7FC0081913C /* AppCoordinator.swift */; };
 		E63C59B31E35A8BC0081913C /* SearchCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E63C59B21E35A8BC0081913C /* SearchCoordinator.swift */; };
@@ -85,6 +86,7 @@
 		E623F4E31E271DD400A9C630 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E623F4F01E27815300A9C630 /* ReactiveSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ReactiveSwift.framework; path = Carthage/Build/iOS/ReactiveSwift.framework; sourceTree = "<group>"; };
 		E623F4F11E27815300A9C630 /* Result.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Result.framework; path = Carthage/Build/iOS/Result.framework; sourceTree = "<group>"; };
+		E63B3FE91E40956B0089750F /* SearchViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
 		E63C59AC1E35A3E50081913C /* CoordinatorType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoordinatorType.swift; sourceTree = "<group>"; };
 		E63C59B01E35A7FC0081913C /* AppCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		E63C59B21E35A8BC0081913C /* SearchCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchCoordinator.swift; sourceTree = "<group>"; };
@@ -257,6 +259,7 @@
 				E697FC741E32057B00DD2CD7 /* BookCellModel.swift */,
 				E697FC761E320CF800DD2CD7 /* BookCellModels.swift */,
 				E63C59B41E35BB1A0081913C /* SearchTableDataSource.swift */,
+				E63B3FE91E40956B0089750F /* SearchViewModel.swift */,
 			);
 			name = UIs;
 			sourceTree = "<group>";
@@ -460,6 +463,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E63B3FEA1E40956B0089750F /* SearchViewModel.swift in Sources */,
 				E6A27FED1E2E0DCB000547D8 /* BookCell.swift in Sources */,
 				E6A4AC161E3703F700108841 /* AlertFactory.swift in Sources */,
 				E6512EC81E39BB8800758242 /* XibInstantiatable.swift in Sources */,

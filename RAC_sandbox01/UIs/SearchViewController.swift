@@ -20,7 +20,7 @@ class SearchViewController: UIViewController, StoryboardInstantiatable {
     @IBOutlet weak var clearButton: UIButton!
     @IBOutlet weak var tableView: UITableView!
     
-    fileprivate var bookCellModels: BookCellModels?
+    fileprivate var searchViewModel: SearchViewModel?
     fileprivate var datasource: SearchTableDataSource?
     private var action: Action<String, String, NoError>?
     
@@ -74,6 +74,8 @@ class SearchViewController: UIViewController, StoryboardInstantiatable {
             // TODO
             // RAC apiに置き換える
             if value.characters.count >= 1 {
+                // TODO
+                // リクエスト自体をViewModelに入れたい
                 self.sendBooksRequest(keyword: value)
             }
         })
@@ -96,11 +98,9 @@ class SearchViewController: UIViewController, StoryboardInstantiatable {
             }
         }
     }
-    
     private func configureResult(books: Books) {
-        self.bookCellModels = BookCellModels.init(model: books.list)
-        self.datasource = SearchTableDataSource(cellModels: self.bookCellModels!)
-        self.tableView.dataSource = self.datasource
+        self.searchViewModel = SearchViewModel.init(books: books)
+        self.tableView.dataSource = self.searchViewModel?.datasource
         self.reloadTableView()
         HUD.flash(.success, delay: 1.6)
     }
@@ -133,19 +133,6 @@ extension SearchViewController: UITableViewDelegate {
         }
         tryDispWebView(cell: cell)
     }
-
-//    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-//        
-//        print("viewForHeaderInSection")
-//        
-//        let header = UILabel(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 22))
-//        header.text = "0件"
-//        return header
-//    }
-//    
-//    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-//        return 22
-//    }
 }
 
 extension SearchViewController: SFSafariViewControllerDelegate {
