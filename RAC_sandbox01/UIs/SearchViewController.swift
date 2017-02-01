@@ -21,7 +21,6 @@ class SearchViewController: UIViewController, StoryboardInstantiatable {
     @IBOutlet weak var tableView: UITableView!
     
     fileprivate var searchViewModel: SearchViewModel?
-    fileprivate var datasource: SearchTableDataSource?
     private var action: Action<String, String, NoError>?
     
     override func viewDidLoad() {
@@ -76,34 +75,44 @@ class SearchViewController: UIViewController, StoryboardInstantiatable {
             if value.characters.count >= 1 {
                 // TODO
                 // リクエスト自体をViewModelに入れたい
-                self.sendBooksRequest(keyword: value)
+                //self.sendBooksRequest(keyword: value)
+                self.configureResul1(keyword: value)
             }
         })
     }
     
     // Sending request
     
-    private func sendBooksRequest(keyword: String) {
-        HUD.flash(.progress, delay: 0.2)
-        
-        let request = GetBooksRequest(keyword: keyword)
-        print("requst keyword: \(keyword)")
-        Session.send(request) { result in
-            switch result {
-            case .success(let books):
-                self.configureResult(books: books)
-            case .failure(let error):
-                print("error: \(error)")
-                self.showErrorAlert()
-            }
-        }
-    }
-    private func configureResult(books: Books) {
-        self.searchViewModel = SearchViewModel.init(books: books)
+//    private func sendBooksRequest(keyword: String) {
+//        HUD.flash(.progress, delay: 0.2)
+//        
+//        let request = GetBooksRequest(keyword: keyword)
+//        print("requst keyword: \(keyword)")
+//        Session.send(request) { result in
+//            switch result {
+//            case .success(let books):
+//                self.configureResult(books: books)
+//            case .failure(let error):
+//                print("error: \(error)")
+//                self.showErrorAlert()
+//            }
+//        }
+//    }
+    
+    private func configureResul1(keyword: String) {
+//        self.searchViewModel = SearchViewModel.init(books: books)
+        self.searchViewModel = SearchViewModel.init(keyword: keyword)
         self.tableView.dataSource = self.searchViewModel?.datasource
         self.reloadTableView()
         HUD.flash(.success, delay: 1.6)
     }
+    
+//    private func configureResult(books: Books) {
+//        self.searchViewModel = SearchViewModel.init(books: books)
+//        self.tableView.dataSource = self.searchViewModel?.datasource
+//        self.reloadTableView()
+//        HUD.flash(.success, delay: 1.6)
+//    }
     
     // for Alert
     
