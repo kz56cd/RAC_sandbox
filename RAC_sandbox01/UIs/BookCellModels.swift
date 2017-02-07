@@ -7,13 +7,21 @@
 //
 
 import Foundation
+import Result
+import ReactiveSwift
 
 protocol BookCellModelsType {
+    var keyword: MutableProperty<String> { get }
+    var validation: MutableProperty<Bool>? { get }
     var cells: [BookCellModel]? { get }
     init(model: [Book])
 }
 
 struct BookCellModels: BookCellModelsType {
+
+    let keyword: MutableProperty<String> = MutableProperty("")
+    internal var validation: MutableProperty<Bool>?
+    
     let cells: [BookCellModel]?
     init(model: [Book]) {
         cells = []
@@ -21,4 +29,8 @@ struct BookCellModels: BookCellModelsType {
             self.cells?.append(BookCellModel.init(model: book))
         }
     }
+}
+
+struct BookError: Error {
+    
 }

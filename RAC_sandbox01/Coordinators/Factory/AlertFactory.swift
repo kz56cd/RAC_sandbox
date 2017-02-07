@@ -10,13 +10,6 @@ import UIKit
 
 struct AlertFactory {
     
-//    static func makeSearchResultZEROAlert() -> UIAlertController {
-//        return UIAlertController(
-//            title: "該当の蔵書がありません",
-//            message: "キーワードを変えて再検索して下さい。",
-//            preferredStyle: .alert)
-//    }
-
     static func makeNetworkErrorAlert() -> UIAlertController {
         return UIAlertController(
             title: "通信エラー",

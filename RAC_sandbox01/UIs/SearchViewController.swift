@@ -11,16 +11,18 @@ import UIKit
 import ReactiveSwift
 import Result
 import APIKit
-
+import PKHUD
 
 class SearchViewController: UIViewController, StoryboardInstantiatable {
 
     @IBOutlet weak var label: UILabel!
     @IBOutlet weak var textField: UITextField!
+    @IBOutlet weak var clearButton: UIButton!
     @IBOutlet weak var tableView: UITableView!
     
-    fileprivate var bookCellModels: BookCellModels?
+    fileprivate var searchViewModel: SearchViewModel?
     fileprivate var datasource: SearchTableDataSource?
+    private var action: Action<String, String, NoError>?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,33 +34,60 @@ class SearchViewController: UIViewController, StoryboardInstantiatable {
         super.didReceiveMemoryWarning()
     }
     
-    // Action
-    
-    @IBAction func buttonTapped(_ sender: UIButton) {
-        // moveTestVC()
-        guard let keyword = textField.text else {
-            return
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        if textField.isFirstResponder {
+            textField.resignFirstResponder()
         }
-        sendBooksRequest(keyword: keyword)
     }
     
+    // Action
+    
     @IBAction func textDidChanged(_ sender: UITextField) {
-        print("textDidChanged")
-//        guard let keyword = textField.text else {
-//            return
-//        }
-//        sendBooksRequest(keyword: keyword)
+        guard let keyword = sender.text else {
+            return
+        }
+        clearButton.isHidden = keyword.characters.count == 0
+        action?.apply(keyword)
+            .start()
+    }
+    
+    @IBAction func clearButtonTapped(_ sender: UIButton) {
+        textField.text = ""
+        clearButton.isHidden = true
     }
     
     // private
     
     private func initView() {
+        
+        action = Action<String, String, NoError> { (word) -> SignalProducer<String, NoError> in
+            return SignalProducer<String, NoError> { (observer, disposable) in
+                print("word: \(word)")
+                observer.send(value: word)
+                observer.sendCompleted()
+            }
+        }
+        
+        action?.values
+            .debounce(1.0, on: QueueScheduler.main)
+            .observeValues({ value in
+            // TODO
+            // RAC apiに置き換える
+            if value.characters.count >= 1 {
+                // TODO
+                // リクエスト自体をViewModelに入れたい
+                self.sendBooksRequest(keyword: value)
+            }
+        })
     }
     
     // Sending request
     
     private func sendBooksRequest(keyword: String) {
+        HUD.flash(.progress, delay: 0.2)
+        
         let request = GetBooksRequest(keyword: keyword)
+        print("requst keyword: \(keyword)")
         Session.send(request) { result in
             switch result {
             case .success(let books):
@@ -69,12 +98,11 @@ class SearchViewController: UIViewController, StoryboardInstantiatable {
             }
         }
     }
-    
     private func configureResult(books: Books) {
-        self.bookCellModels = BookCellModels.init(model: books.list)
-        self.datasource = SearchTableDataSource(cellModels: self.bookCellModels!)
-        self.tableView.dataSource = self.datasource
+        self.searchViewModel = SearchViewModel.init(books: books)
+        self.tableView.dataSource = self.searchViewModel?.datasource
         self.reloadTableView()
+        HUD.flash(.success, delay: 1.6)
     }
     
     // for Alert
@@ -122,8 +150,8 @@ extension SearchViewController: UIScrollViewDelegate {
 }
 
 extension SearchViewController: UITextFieldDelegate {
-    func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
-        print("textFieldShouldEndEditing")
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
         return true
     }
 }
