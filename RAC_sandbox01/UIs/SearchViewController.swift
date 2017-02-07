@@ -75,43 +75,49 @@ class SearchViewController: UIViewController, StoryboardInstantiatable {
             if value.characters.count >= 1 {
                 // TODO
                 // リクエスト自体をViewModelに入れたい
-                //self.sendBooksRequest(keyword: value)
-                self.configureResul1(keyword: value)
+//                self.configureResul1(keyword: value)
+                self.searchViewModel = SearchViewModel.init(keyword: value)
             }
         })
+        
+        let (signal, observer) = Signal<SearchTableDataSource, NoError>.pipe()
+        
+        searchViewModel?.datasource?
+        .signal.observeValues({ (searchTableDataSource) in
+            print("p 0003")
+            
+            self.tableView.dataSource = searchTableDataSource
+            self.reloadTableView()
+
+        })
+        
+        searchViewModel?.datasource <~ signal
     }
     
-    // Sending request
-    
-//    private func sendBooksRequest(keyword: String) {
-//        HUD.flash(.progress, delay: 0.2)
+//    private func configureResul1(keyword: String) {
 //        
-//        let request = GetBooksRequest(keyword: keyword)
-//        print("requst keyword: \(keyword)")
-//        Session.send(request) { result in
-//            switch result {
-//            case .success(let books):
-//                self.configureResult(books: books)
-//            case .failure(let error):
-//                print("error: \(error)")
-//                self.showErrorAlert()
-//            }
-//        }
-//    }
-    
-    private func configureResul1(keyword: String) {
-//        self.searchViewModel = SearchViewModel.init(books: books)
-        self.searchViewModel = SearchViewModel.init(keyword: keyword)
-        self.tableView.dataSource = self.searchViewModel?.datasource
-        self.reloadTableView()
-        HUD.flash(.success, delay: 1.6)
-    }
-    
-//    private func configureResult(books: Books) {
-//        self.searchViewModel = SearchViewModel.init(books: books)
-//        self.tableView.dataSource = self.searchViewModel?.datasource
-//        self.reloadTableView()
-//        HUD.flash(.success, delay: 1.6)
+////        let configure: (String) -> SearchViewModel = {
+////            keyword -> SearchViewModel in
+////            print("p 002")
+////            return SearchViewModel.init(keyword: keyword)
+////        }
+////        self.searchViewModel = configure(keyword)
+////        self.tableView.dataSource = self.searchViewModel?.datasource
+////        reloadTableView()
+////        print("p 001")
+//        
+//        
+////        let configure: (SearchViewModel) -> () = {
+////            viewModel -> () in
+////            print("p 002")
+////            self.tableView.dataSource = viewModel.datasource
+////            self.reloadTableView()
+////            return
+////        }
+////        searchViewModel = SearchViewModel.init(keyword: keyword)
+////        configure(searchViewModel!)
+////        print("p 001")
+//        
 //    }
     
     // for Alert
@@ -130,8 +136,9 @@ class SearchViewController: UIViewController, StoryboardInstantiatable {
         self.present(testViewController, animated: true, completion: nil)
     }
     
-    private func reloadTableView() {
+    func reloadTableView() {
         tableView.reloadData()
+        HUD.flash(.success, delay: 1.6)
     }
 }
 

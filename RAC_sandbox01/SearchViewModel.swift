@@ -13,17 +13,21 @@ import APIKit
 
 protocol SearchViewModelType {
     var bookCellModels: BookCellModels? { get }
-    var datasource: SearchTableDataSource? { get }
+//    var datasource: SearchTableDataSource? { get }
+    var datasource: MutableProperty<SearchTableDataSource>? { get }
+//    var _datasource: SearchTableDataSource? { get }
+    
     init(keyword: String)
 }
 
 struct SearchViewModel: SearchViewModelType {
 
     var bookCellModels: BookCellModels?
-    var datasource: SearchTableDataSource?
+//    var datasource: SearchTableDataSource?
+    var datasource: MutableProperty<SearchTableDataSource>?
     
     init(keyword: String) {
-        self.sendBooksRequest(keyword: keyword)
+        sendBooksRequest(keyword: keyword)
     }
     
     private mutating func sendBooksRequest(keyword: String) {
@@ -37,7 +41,9 @@ struct SearchViewModel: SearchViewModelType {
             switch result {
             case .success(let books):
                 selfObj.bookCellModels = BookCellModels.init(model: books.list)
-                selfObj.datasource = SearchTableDataSource(cellModels: selfObj.bookCellModels!)
+                selfObj.datasource = MutableProperty<SearchTableDataSource>(SearchTableDataSource(cellModels: selfObj.bookCellModels!))
+//                selfObj.datasource = MutableProperty<SearchTableDataSource>(nil)
+                selfObj.datasource?.value = SearchTableDataSource(cellModels: selfObj.bookCellModels!)
                 print(books)
             case .failure(let error):
                 print("error: \(error)")
