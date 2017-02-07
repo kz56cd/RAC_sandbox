@@ -67,31 +67,54 @@ class SearchViewController: UIViewController, StoryboardInstantiatable {
             }
         }
         
+        searchViewModel?.datasource = Action<SearchTableDataSource, SearchTableDataSource, NoError> { (searchTableDataSource: SearchTableDataSource) -> SignalProducer<SearchTableDataSource, NoError> in
+            return SignalProducer<SearchTableDataSource, NoError> { (observer, disposable) in
+                print("t 003")
+                observer.send(value: searchTableDataSource)
+                print("t 004")
+                observer.sendCompleted()
+            }
+        }
+        
         action?.values
             .debounce(1.0, on: QueueScheduler.main)
             .observeValues({ value in
             // TODO
             // RAC apiに置き換える
             if value.characters.count >= 1 {
-                // TODO
-                // リクエスト自体をViewModelに入れたい
-//                self.configureResul1(keyword: value)
                 self.searchViewModel = SearchViewModel.init(keyword: value)
             }
         })
         
-        let (signal, observer) = Signal<SearchTableDataSource, NoError>.pipe()
+//        let (signal, observer) = Signal<SearchTableDataSource, NoError>.pipe()
+//        
+//        searchViewModel?.datasource?
+//        .signal.observeValues({ (searchTableDataSource) in
+//            print("p 0003")
+//            
+//            self.tableView.dataSource = searchTableDataSource
+//            self.reloadTableView()
+//
+//        })
+//        
+//        searchViewModel?.datasource <~ signal
         
-        searchViewModel?.datasource?
-        .signal.observeValues({ (searchTableDataSource) in
+        searchViewModel?.datasource?.values.observeValues({ (searchTableDataSource) in
             print("p 0003")
-            
             self.tableView.dataSource = searchTableDataSource
             self.reloadTableView()
-
         })
         
-        searchViewModel?.datasource <~ signal
+//        searchViewModel?.datasource?.values.observeResult({ result in
+//            switch result {
+//            case let .success(value):
+//                self.tableView.dataSource = value
+//                self.reloadTableView()
+//            case let .failure(error):
+//                print(error)
+//            }
+//        })
+        
     }
     
 //    private func configureResul1(keyword: String) {

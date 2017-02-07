@@ -14,9 +14,10 @@ import APIKit
 protocol SearchViewModelType {
     var bookCellModels: BookCellModels? { get }
 //    var datasource: SearchTableDataSource? { get }
-    var datasource: MutableProperty<SearchTableDataSource>? { get }
+//    var datasource: MutableProperty<SearchTableDataSource>? { get }
 //    var _datasource: SearchTableDataSource? { get }
-    
+    var datasource: Action<SearchTableDataSource, SearchTableDataSource, NoError>? { get }
+
     init(keyword: String)
 }
 
@@ -24,9 +25,21 @@ struct SearchViewModel: SearchViewModelType {
 
     var bookCellModels: BookCellModels?
 //    var datasource: SearchTableDataSource?
-    var datasource: MutableProperty<SearchTableDataSource>?
+//    var datasource: MutableProperty<SearchTableDataSource>?
+    var datasource: Action<SearchTableDataSource, SearchTableDataSource, NoError>?
     
     init(keyword: String) {
+
+        var selfObj = self // TODO 望ましくない記述
+        datasource = Action<SearchTableDataSource, SearchTableDataSource, NoError> { (searchTableDataSource: SearchTableDataSource) -> SignalProducer<SearchTableDataSource, NoError> in
+            return SignalProducer<SearchTableDataSource, NoError> { (observer, disposable) in
+                print("t 003")
+                observer.send(value: searchTableDataSource)
+                print("t 004")
+                observer.sendCompleted()
+            }
+        }
+        print("t 001")
         sendBooksRequest(keyword: keyword)
     }
     
@@ -40,10 +53,20 @@ struct SearchViewModel: SearchViewModelType {
         Session.send(request) { result in
             switch result {
             case .success(let books):
+                print("t 002")
                 selfObj.bookCellModels = BookCellModels.init(model: books.list)
-                selfObj.datasource = MutableProperty<SearchTableDataSource>(SearchTableDataSource(cellModels: selfObj.bookCellModels!))
-//                selfObj.datasource = MutableProperty<SearchTableDataSource>(nil)
-                selfObj.datasource?.value = SearchTableDataSource(cellModels: selfObj.bookCellModels!)
+                
+                let ds = SearchTableDataSource(cellModels: selfObj.bookCellModels!)
+                selfObj.datasource?.apply(ds).start()
+//                selfObj.datasource?.apply(ds).startWithResult({ result in
+//                    switch result {
+//                    case let .success(value):
+//                        print(value)
+//                    case let .failure(error):
+//                        print(error)
+//                    }
+//                })
+//                selfObj.datasource?.start()
                 print(books)
             case .failure(let error):
                 print("error: \(error)")
