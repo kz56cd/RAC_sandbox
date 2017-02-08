@@ -14,20 +14,18 @@ import APIKit
 import PKHUD
 
 class SearchViewController: UIViewController, StoryboardInstantiatable {
-
+    
     @IBOutlet weak var label: UILabel!
     @IBOutlet weak var textField: UITextField!
     @IBOutlet weak var clearButton: UIButton!
     @IBOutlet weak var tableView: UITableView!
     
     fileprivate var searchViewModel: SearchViewModel?
-    fileprivate var datasource: SearchTableDataSource?
     private var action: Action<String, String, NoError>?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         initView()
-
     }
     
     override func didReceiveMemoryWarning() {
@@ -60,6 +58,9 @@ class SearchViewController: UIViewController, StoryboardInstantiatable {
     
     private func initView() {
         
+        searchViewModel = SearchViewModel.init()
+        
+        // set input action
         action = Action<String, String, NoError> { (word) -> SignalProducer<String, NoError> in
             return SignalProducer<String, NoError> { (observer, disposable) in
                 print("word: \(word)")
@@ -67,42 +68,22 @@ class SearchViewController: UIViewController, StoryboardInstantiatable {
                 observer.sendCompleted()
             }
         }
-        
         action?.values
             .debounce(1.0, on: QueueScheduler.main)
             .observeValues({ value in
-            // TODO
-            // RAC apiに置き換える
-            if value.characters.count >= 1 {
                 // TODO
-                // リクエスト自体をViewModelに入れたい
-                self.sendBooksRequest(keyword: value)
-            }
-        })
-    }
-    
-    // Sending request
-    
-    private func sendBooksRequest(keyword: String) {
-        HUD.flash(.progress, delay: 0.2)
+                // RAC apiに置き換える
+                if value.characters.count >= 1 {
+                    HUD.flash(.progress, delay: 0.2)
+                    self.searchViewModel?.sendBooksRequest(keyword: value)
+                }
+            })
         
-        let request = GetBooksRequest(keyword: keyword)
-        print("requst keyword: \(keyword)")
-        Session.send(request) { result in
-            switch result {
-            case .success(let books):
-                self.configureResult(books: books)
-            case .failure(let error):
-                print("error: \(error)")
-                self.showErrorAlert()
-            }
-        }
-    }
-    private func configureResult(books: Books) {
-        self.searchViewModel = SearchViewModel.init(books: books)
-        self.tableView.dataSource = self.searchViewModel?.datasource
-        self.reloadTableView()
-        HUD.flash(.success, delay: 1.6)
+        // set catch Datasource
+        searchViewModel?.datasource?.signal.observeValues({ searchTableDataSource in
+            self.tableView.dataSource = searchTableDataSource
+            self.reloadTableView()
+        })
     }
     
     // for Alert
@@ -121,8 +102,9 @@ class SearchViewController: UIViewController, StoryboardInstantiatable {
         self.present(testViewController, animated: true, completion: nil)
     }
     
-    private func reloadTableView() {
+    func reloadTableView() {
         tableView.reloadData()
+        HUD.flash(.success, delay: 1.6)
     }
 }
 

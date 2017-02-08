@@ -256,10 +256,10 @@
 				E6A27FEA1E2DEBAD000547D8 /* TestViewController.swift */,
 				E6A27FEC1E2E0DCB000547D8 /* BookCell.swift */,
 				E623F4C31E271DD400A9C630 /* SearchViewController.swift */,
+				E63B3FE91E40956B0089750F /* SearchViewModel.swift */,
 				E697FC741E32057B00DD2CD7 /* BookCellModel.swift */,
 				E697FC761E320CF800DD2CD7 /* BookCellModels.swift */,
 				E63C59B41E35BB1A0081913C /* SearchTableDataSource.swift */,
-				E63B3FE91E40956B0089750F /* SearchViewModel.swift */,
 			);
 			name = UIs;
 			sourceTree = "<group>";
