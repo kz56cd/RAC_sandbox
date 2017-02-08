@@ -9,24 +9,24 @@
 import UIKit
 
 final class SearchTableDataSource: NSObject {
-    fileprivate let bookCellModels: BookCellModels?
+    fileprivate var bookCellModels: [BookCellModel]? = nil // TODO: ここはvarにすべき
     
-    init(cellModels: BookCellModels?) {
-        if let cellModels = cellModels {
-            bookCellModels = cellModels
-        } else {
-            bookCellModels = BookCellModels.init(model: [])
-        }
-        super.init()
-    }
+//    init(cellModels: [BookCellModel]?) {
+//        bookCellModels = cellModels
+//        super.init()
+//    }
+    
 }
 
 extension SearchTableDataSource: UITableViewDataSource {
     
+    func set(with cellModels: [BookCellModel]?) {
+        bookCellModels = cellModels
+    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if let bookCellModels = bookCellModels {
-            return bookCellModels.cells?.count ?? 0
+            return bookCellModels.count 
         }
         return 0
     }
@@ -37,18 +37,19 @@ extension SearchTableDataSource: UITableViewDataSource {
     
     // セル生成
     private func makeCell(tableView: UITableView, cellForRowAtIndexPath indexPath: IndexPath) -> BookCell {
-        guard let bookCellModels = bookCellModels,
-            let cells = bookCellModels.cells else {
+        // TODO: 整理する
+        // TODO: BookCellModels は廃止して、[BookCellModel]に変える
+        guard let bookCellModels = bookCellModels else {
             return UITableViewCell() as! BookCell
         }
-        if (bookCellModels.cells?.count ?? 0) < indexPath.row {
+        if (bookCellModels.count) < indexPath.row {
             return UITableViewCell() as! BookCell
         }
         guard  let cell = tableView.dequeueReusableCell(withIdentifier: "BookCell", for: indexPath) as? BookCell else {
             return UITableViewCell() as! BookCell
         }
         cell.selectionStyle  = UITableViewCellSelectionStyle.none
-        cell.configure(cellModel: cells[indexPath.row])
+        cell.configure(with: bookCellModels[indexPath.row])
         return cell
     }
 }

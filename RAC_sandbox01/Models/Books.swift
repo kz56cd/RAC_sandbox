@@ -18,22 +18,22 @@ extension Books {
         
         // try parse
         
-        guard let dictionary = object as? [String: Any],
-            let graph = dictionary["@graph"] as? Array<Any> else {
-                throw ResponseError.unexpectedObject(object)
-        }
-        for data in graph {
-            guard let datadic = data as? [String: Any],
-                let items = datadic["items"] as? Array<Any> else {
-                    throw ResponseError.unexpectedObject(object)
-            }
-            for item in items {
-                guard let item = item as? [String: Any],
-                    let book:Book = Book(object: item) else {
-                        throw ResponseError.unexpectedObject(object)
-                }
-                list.append(book)
-            }
-        }
+//        guard let dictionary = object as? [String: Any],
+//            let graph = dictionary["@graph"] as? Array<Any> else {
+//                throw ResponseError.unexpectedObject(object)
+//        }
+//        for data in graph {
+//            guard let datadic = data as? [String: Any],
+//                let items = datadic["items"] as? Array<Any> else {
+//                    throw ResponseError.unexpectedObject(object)
+//            }
+//            for item in items {
+//                guard let item = item as? [String: Any],
+//                    let book:Book = Book(object: item) else {
+//                        throw ResponseError.unexpectedObject(object)
+//                }
+//                list.append(book)
+//            }
+//        }
     }
 }

@@ -21,12 +21,12 @@ protocol BooksRequestType: Request {
 
 extension BooksRequestType {
     var baseURL:URL {
-        return URL(string:"http://ci.nii.ac.jp/books/opensearch/search")! as URL // json以下は後ほど
+        return URL(string:"http://ci.nii.ac.jp/books/opensearch/search")! // json以下は後ほど
     }
 }
 
 struct GetBooksRequest: BooksRequestType {
-    typealias Response = Books
+    typealias Response = [Book]
     
     var method: HTTPMethod {
         return .get
@@ -41,13 +41,32 @@ struct GetBooksRequest: BooksRequestType {
             "format": "json"
         ]
     }
-    var keyword: String = ""
     
+    let keyword: String
     init(keyword: String) {
         self.keyword = keyword
     }
     
-    func response(from object: Any, urlResponse: HTTPURLResponse) throws -> Books {
-        return try Books(object: object)
+    func response(from object: Any, urlResponse: HTTPURLResponse) throws -> [Book] {
+        var list: [Book] = []
+        guard let dictionary = object as? [String: Any],
+            let graph = dictionary["@graph"] as? Array<Any> else {
+                throw ResponseError.unexpectedObject(object)
+        }
+        // TODO: かっこよく (flatmap)
+        for data in graph {
+            guard let datadic = data as? [String: Any],
+                let items = datadic["items"] as? Array<Any> else {
+                    throw ResponseError.unexpectedObject(object)
+            }
+            for item in items {
+                guard let item = item as? [String: Any],
+                    let book:Book = Book(object: item) else {
+                        throw ResponseError.unexpectedObject(object)
+                }
+                list.append(book)
+            }
+        }
+        return list
     }
 }

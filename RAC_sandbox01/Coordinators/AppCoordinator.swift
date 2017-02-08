@@ -14,7 +14,7 @@ final class AppCoordinator {
     
     init(window: UIWindow) {
         self.window = window
-        self.searchCoordinator = SearchCoordinator.init(presenter: SearchViewController.instantiate())
+        self.searchCoordinator = SearchCoordinator(presenter: SearchViewController.instantiate())
     }
     
     func start() {

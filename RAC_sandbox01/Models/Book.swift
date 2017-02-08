@@ -10,22 +10,23 @@ import Foundation
 import APIKit
 
 struct Book {
-    var title: String     = ""
-    var publisher: String = ""
-    var link: String      = ""
+    let title: String
+    let publisher: String?
+    let link: String?
 }
 
 extension Book {
     init?(object: [String: Any]) {
-        self.init()
-        let title = object["title"] as? String
-        let link = object["@id"] as? String
-        if let publisherArray = object["dc:publisher"] as? [String] {
-            if publisherArray.count >= 1 {
-                self.publisher = publisherArray[0]
-            }
+        guard let title = object["title"] as? String else {
+            return nil
         }
-        self.title = title ?? ""
-        self.link = link ?? ""
+        if let publisherArray = object["dc:publisher"] as? [String],
+            publisherArray.count >= 1 {
+            self.publisher = publisherArray[0]
+        } else {
+            self.publisher = nil
+        }
+        self.title = title
+        self.link = object["@id"] as? String
     }
 }

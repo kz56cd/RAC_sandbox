@@ -20,8 +20,14 @@ class SearchViewController: UIViewController, StoryboardInstantiatable {
     @IBOutlet weak var clearButton: UIButton!
     @IBOutlet weak var tableView: UITableView!
     
-    fileprivate var searchViewModel: SearchViewModel?
-    private var action: Action<String, String, NoError>?
+    fileprivate var searchViewModel: SearchViewModel? = SearchViewModel()
+    fileprivate var searchTableDataSource: SearchTableDataSource? = SearchTableDataSource()
+
+    // TODO:
+    // VM側に書く
+    // TODO:
+    // 可能であればMutablePropertyに変える
+    private let (input, inputObserver) = Signal<String, NoError>.pipe()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,13 +44,14 @@ class SearchViewController: UIViewController, StoryboardInstantiatable {
     
     // Action
     
+    // TODO:
+    // 可能であればdelegateをUIKit拡張(ReactiveCococa)に変える
     @IBAction func textDidChanged(_ sender: UITextField) {
         guard let keyword = sender.text else {
             return
         }
         clearButton.isHidden = keyword.characters.count == 0
-        action?.apply(keyword)
-            .start()
+        inputObserver.send(value: keyword)
     }
     
     @IBAction func clearButtonTapped(_ sender: UIButton) {
@@ -56,30 +63,22 @@ class SearchViewController: UIViewController, StoryboardInstantiatable {
     
     private func initView() {
         
-        searchViewModel = SearchViewModel.init()
-        
-        // set input action
-        action = Action<String, String, NoError> { (word) -> SignalProducer<String, NoError> in
-            return SignalProducer<String, NoError> { (observer, disposable) in
-                print("word: \(word)")
-                observer.send(value: word)
-                observer.sendCompleted()
+        // TODO:
+        // VM側に書く
+        input.debounce(1.0, on: QueueScheduler.main)
+            .observeValues { keyword in
+            // TODO:
+            // RAC apiに置き換える
+            if keyword.characters.count >= 1 {
+                HUD.flash(.progress, delay: 0.2)
+                self.searchViewModel?.sendBooksRequest(keyword: keyword)
             }
         }
-        action?.values
-            .debounce(1.0, on: QueueScheduler.main)
-            .observeValues({ value in
-                // TODO
-                // RAC apiに置き換える
-                if value.characters.count >= 1 {
-                    HUD.flash(.progress, delay: 0.2)
-                    self.searchViewModel?.sendBooksRequest(keyword: value)
-                }
-            })
         
         // set catch Datasource
-        searchViewModel?.datasource?.signal.observeValues({ searchTableDataSource in
-            self.tableView.dataSource = searchTableDataSource
+        searchViewModel?.setCellModels?.signal.observeValues({ cellModels in
+            self.searchTableDataSource?.set(with: cellModels)
+            self.tableView.dataSource = self.searchTableDataSource
             self.reloadTableView()
         })
     }
@@ -88,17 +87,11 @@ class SearchViewController: UIViewController, StoryboardInstantiatable {
     
     private func showErrorAlert() {
         let alertController = AlertFactory.makeNetworkErrorAlert()
-        alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: { [weak self] _ in
-        }))
+        alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         present(alertController, animated: true, completion: nil)
     }
     
     // for debug
-    
-    private func moveTestVC() {
-        let testViewController = TestViewController.instantiate()
-        self.present(testViewController, animated: true, completion: nil)
-    }
     
     private func reloadTableView() {
         tableView.reloadData()
@@ -112,6 +105,14 @@ class SearchViewController: UIViewController, StoryboardInstantiatable {
             textField.resignFirstResponder()
         }
     }
+    
+    // TODO:
+    // Coordintorでやる
+//    fileprivate func tryDispWebView(cell: BookCell) {
+//        let url: URL = cell.getLink()
+//        let safariVC = SFSafariViewController(url: url)
+//        self.present(safariVC, animated: true, completion: nil)
+//    }
 }
 
 extension SearchViewController: UITableViewDelegate {
@@ -119,15 +120,8 @@ extension SearchViewController: UITableViewDelegate {
         guard let cell = tableView.cellForRow(at: indexPath) as? BookCell else {
             return
         }
-        tryDispWebView(cell: cell)
-    }
-}
-
-extension SearchViewController: SFSafariViewControllerDelegate {
-    func tryDispWebView(cell: BookCell) {
-        let url: URL = cell.getLink()
-        let safariVC = SFSafariViewController(url: url)
-        self.present(safariVC, animated: true, completion: nil)
+        print(cell)
+//        tryDispWebView(cell: cell)
     }
 }
 

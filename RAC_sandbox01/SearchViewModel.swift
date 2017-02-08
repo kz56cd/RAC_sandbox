@@ -12,15 +12,15 @@ import Result
 import APIKit
 
 protocol SearchViewModelType {
-    var bookCellModels: BookCellModels? { get }
-    var datasource: MutableProperty<SearchTableDataSource>? { get }
+    var bookCellModels: [BookCellModel] { get }
+    var setCellModels: MutableProperty<[BookCellModel]>? { get }
     init()
 }
 
 struct SearchViewModel: SearchViewModelType {
     
-    var bookCellModels: BookCellModels? = BookCellModels.init(model: [])
-    var datasource: MutableProperty<SearchTableDataSource>? = MutableProperty<SearchTableDataSource>(SearchTableDataSource(cellModels: BookCellModels.init(model: []))) // TODO: 長い
+    var bookCellModels: [BookCellModel] = []
+    var setCellModels: MutableProperty<[BookCellModel]>? = MutableProperty<[BookCellModel]>([])
     
     init() {
         // stub
@@ -28,14 +28,16 @@ struct SearchViewModel: SearchViewModelType {
     
     mutating func sendBooksRequest(keyword: String) {
         let request = GetBooksRequest(keyword: keyword)
-        var selfObj = self // TODO 望ましくない記述
+        var selfObj = self // TODO: 望ましくない記述
         
         print("requst keyword: \(keyword)")
         Session.send(request) { result in
             switch result {
-            case .success(let books):
-                selfObj.bookCellModels = BookCellModels.init(model: books.list)
-                selfObj.datasource?.value = SearchTableDataSource(cellModels: selfObj.bookCellModels!)
+            case .success(let list):
+                for book in list {
+                    selfObj.bookCellModels.append(BookCellModel(model: book))
+                }
+                selfObj.setCellModels?.value = selfObj.bookCellModels
             case .failure(let error):
                 print("error: \(error)")
                 //self.showErrorAlert() // TODO: Error表記の繋ぎ込み

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E60883C41E4B3225000FDEFC /* APIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E60883C31E4B3225000FDEFC /* APIKit.framework */; };
 		E623F4C21E271DD400A9C630 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E623F4C11E271DD400A9C630 /* AppDelegate.swift */; };
 		E623F4C41E271DD400A9C630 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E623F4C31E271DD400A9C630 /* SearchViewController.swift */; };
 		E623F4C91E271DD400A9C630 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E623F4C81E271DD400A9C630 /* Assets.xcassets */; };
@@ -23,7 +24,6 @@
 		E6512ECA1E39BBCE00758242 /* UIFont+Hiragino.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6512EC91E39BBCE00758242 /* UIFont+Hiragino.swift */; };
 		E6512ECC1E39BC1000758242 /* UIImage+Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6512ECB1E39BC1000758242 /* UIImage+Color.swift */; };
 		E6512ECF1E39E19400758242 /* CustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6512ECE1E39E19400758242 /* CustomView.swift */; };
-		E66ED79D1E2C8AC900F30A19 /* Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = E66ED79C1E2C8AC900F30A19 /* Weather.swift */; };
 		E66ED7A41E2C9A2A00F30A19 /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E623F4F11E27815300A9C630 /* Result.framework */; };
 		E697FC6F1E31E20A00DD2CD7 /* stub_search_book.json in Resources */ = {isa = PBXBuildFile; fileRef = E697FC6E1E31E20A00DD2CD7 /* stub_search_book.json */; };
 		E697FC731E31E9DB00DD2CD7 /* RequestStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = E697FC721E31E9DB00DD2CD7 /* RequestStub.swift */; };
@@ -33,13 +33,9 @@
 		E6A27FE11E2DC195000547D8 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6A27FE01E2DC195000547D8 /* Request.swift */; };
 		E6A27FE51E2DCD0E000547D8 /* StoryboardInstantiatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6A27FE41E2DCD0E000547D8 /* StoryboardInstantiatable.swift */; };
 		E6A27FE71E2DE947000547D8 /* SearchViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E6A27FE61E2DE947000547D8 /* SearchViewController.storyboard */; };
-		E6A27FE91E2DEB94000547D8 /* TestViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E6A27FE81E2DEB94000547D8 /* TestViewController.storyboard */; };
-		E6A27FEB1E2DEBAD000547D8 /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6A27FEA1E2DEBAD000547D8 /* TestViewController.swift */; };
 		E6A27FED1E2E0DCB000547D8 /* BookCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6A27FEC1E2E0DCB000547D8 /* BookCell.swift */; };
 		E6A4AC161E3703F700108841 /* AlertFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6A4AC151E3703F700108841 /* AlertFactory.swift */; };
 		E6ACE3F31E3EF46400AD2CA1 /* PKHUD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E6ACE3F21E3EF46400AD2CA1 /* PKHUD.framework */; };
-		E6F5909B1E2C9B7B00619598 /* APIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E6F5909A1E2C9B7B00619598 /* APIKit.framework */; };
-		E6F5909D1E2CD37400619598 /* Books.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6F5909C1E2CD37400619598 /* Books.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,6 +68,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		E60883C31E4B3225000FDEFC /* APIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = APIKit.framework; path = Carthage/Build/iOS/APIKit.framework; sourceTree = "<group>"; };
 		E623F4BE1E271DD400A9C630 /* RAC_sandbox01.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RAC_sandbox01.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E623F4C11E271DD400A9C630 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E623F4C31E271DD400A9C630 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SearchViewController.swift; path = UIs/SearchViewController.swift; sourceTree = "<group>"; };
@@ -95,8 +92,6 @@
 		E6512EC91E39BBCE00758242 /* UIFont+Hiragino.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIFont+Hiragino.swift"; path = "Utilities/UIFont+Hiragino.swift"; sourceTree = "<group>"; };
 		E6512ECB1E39BC1000758242 /* UIImage+Color.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIImage+Color.swift"; path = "Utilities/UIImage+Color.swift"; sourceTree = "<group>"; };
 		E6512ECE1E39E19400758242 /* CustomView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomView.swift; sourceTree = "<group>"; };
-		E66ED79C1E2C8AC900F30A19 /* Weather.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Weather.swift; path = Models/Weather.swift; sourceTree = "<group>"; };
-		E66ED79E1E2C98C200F30A19 /* APIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = APIKit.framework; path = Carthage/Build/Mac/APIKit.framework; sourceTree = "<group>"; };
 		E697FC6E1E31E20A00DD2CD7 /* stub_search_book.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = stub_search_book.json; sourceTree = "<group>"; };
 		E697FC721E31E9DB00DD2CD7 /* RequestStub.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RequestStub.swift; path = Models/APIManager/RequestStub.swift; sourceTree = "<group>"; };
 		E697FC741E32057B00DD2CD7 /* BookCellModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BookCellModel.swift; path = UIs/BookCellModel.swift; sourceTree = "<group>"; };
@@ -105,13 +100,9 @@
 		E6A27FE01E2DC195000547D8 /* Request.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Request.swift; path = Models/APIManager/Request.swift; sourceTree = "<group>"; };
 		E6A27FE41E2DCD0E000547D8 /* StoryboardInstantiatable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StoryboardInstantiatable.swift; path = Utilities/StoryboardInstantiatable.swift; sourceTree = "<group>"; };
 		E6A27FE61E2DE947000547D8 /* SearchViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = SearchViewController.storyboard; path = UIs/SearchViewController.storyboard; sourceTree = "<group>"; };
-		E6A27FE81E2DEB94000547D8 /* TestViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = TestViewController.storyboard; path = UIs/TestViewController.storyboard; sourceTree = "<group>"; };
-		E6A27FEA1E2DEBAD000547D8 /* TestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TestViewController.swift; path = UIs/TestViewController.swift; sourceTree = "<group>"; };
 		E6A27FEC1E2E0DCB000547D8 /* BookCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BookCell.swift; path = UIs/BookCell.swift; sourceTree = "<group>"; };
 		E6A4AC151E3703F700108841 /* AlertFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertFactory.swift; sourceTree = "<group>"; };
 		E6ACE3F21E3EF46400AD2CA1 /* PKHUD.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PKHUD.framework; path = Carthage/Build/iOS/PKHUD.framework; sourceTree = "<group>"; };
-		E6F5909A1E2C9B7B00619598 /* APIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = APIKit.framework; path = Carthage/Build/iOS/APIKit.framework; sourceTree = "<group>"; };
-		E6F5909C1E2CD37400619598 /* Books.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Books.swift; path = Models/Books.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,8 +110,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E60883C41E4B3225000FDEFC /* APIKit.framework in Frameworks */,
 				E6ACE3F31E3EF46400AD2CA1 /* PKHUD.framework in Frameworks */,
-				E6F5909B1E2C9B7B00619598 /* APIKit.framework in Frameworks */,
 				E623F4F21E27815300A9C630 /* ReactiveSwift.framework in Frameworks */,
 				E66ED7A41E2C9A2A00F30A19 /* Result.framework in Frameworks */,
 			);
@@ -199,9 +190,8 @@
 		E623F4EF1E27815300A9C630 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E60883C31E4B3225000FDEFC /* APIKit.framework */,
 				E6ACE3F21E3EF46400AD2CA1 /* PKHUD.framework */,
-				E6F5909A1E2C9B7B00619598 /* APIKit.framework */,
-				E66ED79E1E2C98C200F30A19 /* APIKit.framework */,
 				E623F4F01E27815300A9C630 /* ReactiveSwift.framework */,
 				E623F4F11E27815300A9C630 /* Result.framework */,
 			);
@@ -252,8 +242,6 @@
 				E6512ECD1E39E18A00758242 /* CustomParts */,
 				E623F4CA1E271DD400A9C630 /* LaunchScreen.storyboard */,
 				E6A27FE61E2DE947000547D8 /* SearchViewController.storyboard */,
-				E6A27FE81E2DEB94000547D8 /* TestViewController.storyboard */,
-				E6A27FEA1E2DEBAD000547D8 /* TestViewController.swift */,
 				E6A27FEC1E2E0DCB000547D8 /* BookCell.swift */,
 				E623F4C31E271DD400A9C630 /* SearchViewController.swift */,
 				E63B3FE91E40956B0089750F /* SearchViewModel.swift */,
@@ -288,9 +276,7 @@
 		E69A3E041E31A06E004D7C43 /* Entities */ = {
 			isa = PBXGroup;
 			children = (
-				E6F5909C1E2CD37400619598 /* Books.swift */,
 				E6A27FDE1E2DBB0C000547D8 /* Book.swift */,
-				E66ED79C1E2C8AC900F30A19 /* Weather.swift */,
 			);
 			name = Entities;
 			sourceTree = "<group>";
@@ -417,7 +403,6 @@
 				E623F4CC1E271DD400A9C630 /* LaunchScreen.storyboard in Resources */,
 				E623F4C91E271DD400A9C630 /* Assets.xcassets in Resources */,
 				E6A27FE71E2DE947000547D8 /* SearchViewController.storyboard in Resources */,
-				E6A27FE91E2DEB94000547D8 /* TestViewController.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -469,15 +454,12 @@
 				E6512EC81E39BB8800758242 /* XibInstantiatable.swift in Sources */,
 				E6512ECF1E39E19400758242 /* CustomView.swift in Sources */,
 				E63C59B31E35A8BC0081913C /* SearchCoordinator.swift in Sources */,
-				E6F5909D1E2CD37400619598 /* Books.swift in Sources */,
 				E6A27FE11E2DC195000547D8 /* Request.swift in Sources */,
-				E6A27FEB1E2DEBAD000547D8 /* TestViewController.swift in Sources */,
 				E6512ECA1E39BBCE00758242 /* UIFont+Hiragino.swift in Sources */,
 				E623F4C41E271DD400A9C630 /* SearchViewController.swift in Sources */,
 				E6A27FE51E2DCD0E000547D8 /* StoryboardInstantiatable.swift in Sources */,
 				E63C59B11E35A7FC0081913C /* AppCoordinator.swift in Sources */,
 				E63C59AD1E35A3E50081913C /* CoordinatorType.swift in Sources */,
-				E66ED79D1E2C8AC900F30A19 /* Weather.swift in Sources */,
 				E697FC751E32057B00DD2CD7 /* BookCellModel.swift in Sources */,
 				E697FC731E31E9DB00DD2CD7 /* RequestStub.swift in Sources */,
 				E6A27FDF1E2DBB0C000547D8 /* Book.swift in Sources */,

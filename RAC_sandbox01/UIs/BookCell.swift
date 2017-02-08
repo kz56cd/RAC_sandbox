@@ -13,7 +13,7 @@ class BookCell: UITableViewCell {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var publisherLabel: UILabel!
     
-    private var bookCellModel: BookCellModel!
+    private var bookCellModel: BookCellModel?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -23,13 +23,15 @@ class BookCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
 
-    func configure(cellModel: BookCellModel) {
+    func configure(with cellModel: BookCellModel) {
         bookCellModel = cellModel
         titleLabel.text = bookCellModel?.title
         publisherLabel.text = bookCellModel?.publisher
     }
     
-    func getLink() -> URL {
-        return bookCellModel.link
-    }
+    // TDDO:
+    // ここではとるべきでない VMかCoordinator
+//    func getLink() -> URL {
+//        return bookCellModel?.link 
+//    }
 }

@@ -48,7 +48,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow(frame: UIScreen.main.bounds)
         
         // TODO: (tagmatchでは)更にfactoryクラスに生成を委譲していた
-        appCoordinator = AppCoordinator.init(window: window!)
+        appCoordinator = AppCoordinator(window: window!)
         appCoordinator?.start()
     }
 }
