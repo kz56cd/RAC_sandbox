@@ -33,9 +33,7 @@ class SearchViewController: UIViewController, StoryboardInstantiatable {
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        if textField.isFirstResponder {
-            textField.resignFirstResponder()
-        }
+        shouldHideKeyboard()
     }
     
     // Action
@@ -102,9 +100,17 @@ class SearchViewController: UIViewController, StoryboardInstantiatable {
         self.present(testViewController, animated: true, completion: nil)
     }
     
-    func reloadTableView() {
+    private func reloadTableView() {
         tableView.reloadData()
         HUD.flash(.success, delay: 1.6)
+    }
+    
+    // fileprivate
+    
+    fileprivate func shouldHideKeyboard() {
+        if textField.isFirstResponder {
+            textField.resignFirstResponder()
+        }
     }
 }
 
@@ -127,7 +133,7 @@ extension SearchViewController: SFSafariViewControllerDelegate {
 
 extension SearchViewController: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        // スタブ
+        shouldHideKeyboard()
     }
 }
 
