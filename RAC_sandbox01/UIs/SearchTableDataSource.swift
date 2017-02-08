@@ -9,10 +9,14 @@
 import UIKit
 
 final class SearchTableDataSource: NSObject {
-    fileprivate let bookCellModels: BookCellModels!
+    fileprivate let bookCellModels: BookCellModels?
     
-    init(cellModels: BookCellModels) {
-        self.bookCellModels = cellModels
+    init(cellModels: BookCellModels?) {
+        if let cellModels = cellModels {
+            bookCellModels = cellModels
+        } else {
+            bookCellModels = BookCellModels.init(model: [])
+        }
         super.init()
     }
 }
@@ -21,7 +25,10 @@ extension SearchTableDataSource: UITableViewDataSource {
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return bookCellModels.cells?.count ?? 0
+        if let bookCellModels = bookCellModels {
+            return bookCellModels.cells?.count ?? 0
+        }
+        return 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -30,13 +37,13 @@ extension SearchTableDataSource: UITableViewDataSource {
     
     // セル生成
     private func makeCell(tableView: UITableView, cellForRowAtIndexPath indexPath: IndexPath) -> BookCell {
-        guard let cells = bookCellModels.cells else {
+        guard let bookCellModels = bookCellModels,
+            let cells = bookCellModels.cells else {
             return UITableViewCell() as! BookCell
         }
         if (bookCellModels.cells?.count ?? 0) < indexPath.row {
             return UITableViewCell() as! BookCell
         }
-        
         guard  let cell = tableView.dequeueReusableCell(withIdentifier: "BookCell", for: indexPath) as? BookCell else {
             return UITableViewCell() as! BookCell
         }

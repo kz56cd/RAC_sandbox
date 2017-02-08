@@ -14,7 +14,7 @@ import APIKit
 import PKHUD
 
 class SearchViewController: UIViewController, StoryboardInstantiatable {
-
+    
     @IBOutlet weak var label: UILabel!
     @IBOutlet weak var textField: UITextField!
     @IBOutlet weak var clearButton: UIButton!
@@ -26,7 +26,6 @@ class SearchViewController: UIViewController, StoryboardInstantiatable {
     override func viewDidLoad() {
         super.viewDidLoad()
         initView()
-
     }
     
     override func didReceiveMemoryWarning() {
@@ -59,6 +58,9 @@ class SearchViewController: UIViewController, StoryboardInstantiatable {
     
     private func initView() {
         
+        searchViewModel = SearchViewModel.init()
+        
+        // set input action
         action = Action<String, String, NoError> { (word) -> SignalProducer<String, NoError> in
             return SignalProducer<String, NoError> { (observer, disposable) in
                 print("word: \(word)")
@@ -66,82 +68,23 @@ class SearchViewController: UIViewController, StoryboardInstantiatable {
                 observer.sendCompleted()
             }
         }
-        
-        searchViewModel?.datasource = Action<SearchTableDataSource, SearchTableDataSource, NoError> { (searchTableDataSource: SearchTableDataSource) -> SignalProducer<SearchTableDataSource, NoError> in
-            return SignalProducer<SearchTableDataSource, NoError> { (observer, disposable) in
-                print("t 003")
-                observer.send(value: searchTableDataSource)
-                print("t 004")
-                observer.sendCompleted()
-            }
-        }
-        
         action?.values
             .debounce(1.0, on: QueueScheduler.main)
             .observeValues({ value in
-            // TODO
-            // RAC apiに置き換える
-            if value.characters.count >= 1 {
-                self.searchViewModel = SearchViewModel.init(keyword: value)
-            }
-        })
+                // TODO
+                // RAC apiに置き換える
+                if value.characters.count >= 1 {
+                    self.searchViewModel?.sendBooksRequest(keyword: value)
+                }
+            })
         
-//        let (signal, observer) = Signal<SearchTableDataSource, NoError>.pipe()
-//        
-//        searchViewModel?.datasource?
-//        .signal.observeValues({ (searchTableDataSource) in
-//            print("p 0003")
-//            
-//            self.tableView.dataSource = searchTableDataSource
-//            self.reloadTableView()
-//
-//        })
-//        
-//        searchViewModel?.datasource <~ signal
-        
-        searchViewModel?.datasource?.values.observeValues({ (searchTableDataSource) in
-            print("p 0003")
+        // set catch Datasource
+        searchViewModel?.datasource?.signal.observeValues({ searchTableDataSource in
+            print("t 003")
             self.tableView.dataSource = searchTableDataSource
             self.reloadTableView()
         })
-        
-//        searchViewModel?.datasource?.values.observeResult({ result in
-//            switch result {
-//            case let .success(value):
-//                self.tableView.dataSource = value
-//                self.reloadTableView()
-//            case let .failure(error):
-//                print(error)
-//            }
-//        })
-        
     }
-    
-//    private func configureResul1(keyword: String) {
-//        
-////        let configure: (String) -> SearchViewModel = {
-////            keyword -> SearchViewModel in
-////            print("p 002")
-////            return SearchViewModel.init(keyword: keyword)
-////        }
-////        self.searchViewModel = configure(keyword)
-////        self.tableView.dataSource = self.searchViewModel?.datasource
-////        reloadTableView()
-////        print("p 001")
-//        
-//        
-////        let configure: (SearchViewModel) -> () = {
-////            viewModel -> () in
-////            print("p 002")
-////            self.tableView.dataSource = viewModel.datasource
-////            self.reloadTableView()
-////            return
-////        }
-////        searchViewModel = SearchViewModel.init(keyword: keyword)
-////        configure(searchViewModel!)
-////        print("p 001")
-//        
-//    }
     
     // for Alert
     
