@@ -13,6 +13,7 @@ import APIKit
 
 protocol SearchViewModelType {
     var bookCellModels: [BookCellModel] { get }
+    var input: MutableProperty<String> { get }
     var setCellModels: MutableProperty<[BookCellModel]>? { get }
     init()
 }
@@ -20,12 +21,13 @@ protocol SearchViewModelType {
 struct SearchViewModel: SearchViewModelType {
     
     var bookCellModels: [BookCellModel] = []
-    var setCellModels: MutableProperty<[BookCellModel]>? = MutableProperty<[BookCellModel]>([])
-    let (input, inputObserver) = Signal<String, NoError>.pipe()
+    let input: MutableProperty<String> = MutableProperty<String>("")
+    let setCellModels: MutableProperty<[BookCellModel]>? = MutableProperty<[BookCellModel]>([])
     
     init() {
         var selfObj = self // TODO: 望ましくない記述
-        input.debounce(1.0, on: QueueScheduler.main)
+        input.signal
+            .debounce(1.0, on: QueueScheduler.main)
             .observeValues { keyword in
                 // TODO:
                 // RAC apiに置き換える

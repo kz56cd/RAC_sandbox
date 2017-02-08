@@ -23,10 +23,6 @@ class SearchViewController: UIViewController, StoryboardInstantiatable {
     fileprivate var searchViewModel: SearchViewModel? = SearchViewModel()
     fileprivate var searchTableDataSource: SearchTableDataSource? = SearchTableDataSource()
 
-    // TODO:
-    // 可能であればMutablePropertyに変える
-//    private let (input, inputObserver) = Signal<String, NoError>.pipe()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         initView()
@@ -49,7 +45,7 @@ class SearchViewController: UIViewController, StoryboardInstantiatable {
             return
         }
         clearButton.isHidden = keyword.characters.count == 0
-        searchViewModel?.inputObserver.send(value: keyword)
+        searchViewModel?.input.value = keyword
     }
     
     @IBAction func clearButtonTapped(_ sender: UIButton) {
