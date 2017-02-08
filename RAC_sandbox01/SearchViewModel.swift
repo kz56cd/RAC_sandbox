@@ -21,9 +21,19 @@ struct SearchViewModel: SearchViewModelType {
     
     var bookCellModels: [BookCellModel] = []
     var setCellModels: MutableProperty<[BookCellModel]>? = MutableProperty<[BookCellModel]>([])
+    let (input, inputObserver) = Signal<String, NoError>.pipe()
     
     init() {
-        // stub
+        var selfObj = self // TODO: 望ましくない記述
+        input.debounce(1.0, on: QueueScheduler.main)
+            .observeValues { keyword in
+                // TODO:
+                // RAC apiに置き換える
+                if keyword.characters.count >= 1 {
+                    // HUD.flash(.progress, delay: 0.2)
+                    selfObj.sendBooksRequest(keyword: keyword)
+                }
+        }
     }
     
     mutating func sendBooksRequest(keyword: String) {

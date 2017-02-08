@@ -24,10 +24,8 @@ class SearchViewController: UIViewController, StoryboardInstantiatable {
     fileprivate var searchTableDataSource: SearchTableDataSource? = SearchTableDataSource()
 
     // TODO:
-    // VM側に書く
-    // TODO:
     // 可能であればMutablePropertyに変える
-    private let (input, inputObserver) = Signal<String, NoError>.pipe()
+//    private let (input, inputObserver) = Signal<String, NoError>.pipe()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,7 +49,7 @@ class SearchViewController: UIViewController, StoryboardInstantiatable {
             return
         }
         clearButton.isHidden = keyword.characters.count == 0
-        inputObserver.send(value: keyword)
+        searchViewModel?.inputObserver.send(value: keyword)
     }
     
     @IBAction func clearButtonTapped(_ sender: UIButton) {
@@ -62,18 +60,6 @@ class SearchViewController: UIViewController, StoryboardInstantiatable {
     // private
     
     private func initView() {
-        
-        // TODO:
-        // VM側に書く
-        input.debounce(1.0, on: QueueScheduler.main)
-            .observeValues { keyword in
-            // TODO:
-            // RAC apiに置き換える
-            if keyword.characters.count >= 1 {
-                HUD.flash(.progress, delay: 0.2)
-                self.searchViewModel?.sendBooksRequest(keyword: keyword)
-            }
-        }
         
         // set catch Datasource
         searchViewModel?.setCellModels?.signal.observeValues({ cellModels in
