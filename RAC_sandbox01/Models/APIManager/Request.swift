@@ -47,9 +47,6 @@ struct GetBooksRequest: BooksRequestType {
         self.keyword = keyword
     }
     
-//    func response(from object: Any, urlResponse: HTTPURLResponse) throws -> Books {
-//        return try Books(object: object)
-//    }
     func response(from object: Any, urlResponse: HTTPURLResponse) throws -> Books {
         return try Books(object: object)
     }

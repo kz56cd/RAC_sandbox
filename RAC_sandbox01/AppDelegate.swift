@@ -16,7 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var appCoordinator: AppCoordinator?
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        appStart()
+        startApp()
         return true
     }
 
@@ -44,10 +44,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     // private
     
-    private func appStart() {
+    private func startApp() {
         window = UIWindow(frame: UIScreen.main.bounds)
         
-        // MEMO: 更にfactoryクラスに生成を委譲していた
+        // TODO: (tagmatchでは)更にfactoryクラスに生成を委譲していた
         appCoordinator = AppCoordinator.init(window: window!)
         appCoordinator?.start()
     }

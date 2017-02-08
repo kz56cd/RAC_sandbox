@@ -74,13 +74,13 @@ class SearchViewController: UIViewController, StoryboardInstantiatable {
                 // TODO
                 // RAC apiに置き換える
                 if value.characters.count >= 1 {
+                    HUD.flash(.progress, delay: 0.2)
                     self.searchViewModel?.sendBooksRequest(keyword: value)
                 }
             })
         
         // set catch Datasource
         searchViewModel?.datasource?.signal.observeValues({ searchTableDataSource in
-            print("t 003")
             self.tableView.dataSource = searchTableDataSource
             self.reloadTableView()
         })

@@ -36,7 +36,6 @@ struct SearchViewModel: SearchViewModelType {
             case .success(let books):
                 selfObj.bookCellModels = BookCellModels.init(model: books.list)
                 selfObj.datasource?.value = SearchTableDataSource(cellModels: selfObj.bookCellModels!)
-                print(books)
             case .failure(let error):
                 print("error: \(error)")
                 //self.showErrorAlert() // TODO: Error表記の繋ぎ込み
