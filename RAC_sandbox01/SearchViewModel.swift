@@ -11,14 +11,14 @@ import ReactiveSwift
 import Result
 import APIKit
 
-protocol SearchViewModelType {
+protocol SearchViewModelProtocol {
     var bookCellModels: [BookCellModel] { get }
     var input: MutableProperty<String> { get }
     var setCellModels: MutableProperty<[BookCellModel]>? { get }
     init()
 }
 
-struct SearchViewModel: SearchViewModelType {
+struct SearchViewModel: SearchViewModelProtocol {
 
     var bookCellModels: [BookCellModel] = []
     let input: MutableProperty<String> = MutableProperty<String>("")

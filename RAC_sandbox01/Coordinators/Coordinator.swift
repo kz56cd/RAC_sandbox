@@ -1,5 +1,5 @@
 //
-//  CoordinatorType.swift
+//  Coordinator.swift
 //  RAC_sandbox01
 //
 //  Created by msano on 2017/01/23.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol CoordinatorType {
+protocol Coordinator {
     var presenter: UIViewController { get }
     func start()
 }

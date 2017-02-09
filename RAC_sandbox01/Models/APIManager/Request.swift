@@ -14,17 +14,17 @@ import APIKit
 // http://ci.nii.ac.jp/books/opensearch/search?q=オブジェクト指向&count=40&format=json
 // 上記の図書館蔵書検索のapiを利用する
 
-protocol BooksRequestType: Request {
+protocol BooksRequest: Request {
 
 }
 
-extension BooksRequestType {
+extension BooksRequest {
     var baseURL: URL {
         return URL(string:"http://ci.nii.ac.jp/books/opensearch/search")! // json以下は後ほど
     }
 }
 
-struct GetBooksRequest: BooksRequestType {
+struct GetBooksRequest: BooksRequest {
     typealias Response = [Book]
 
     var method: HTTPMethod {

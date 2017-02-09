@@ -9,7 +9,7 @@
 import UIKit
 import SafariServices
 
-final class SearchCoordinator: CoordinatorType {
+final class SearchCoordinator: Coordinator {
     var presenter: UIViewController {
         return searchViewController as SearchViewController
     }

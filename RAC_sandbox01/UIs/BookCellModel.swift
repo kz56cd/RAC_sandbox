@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol BookCellModelType {
+protocol BookCellModelProtocol {
     var title: String { get }
     var publisher: String? { get }
     var linkStr: String? { get }
@@ -16,7 +16,7 @@ protocol BookCellModelType {
     init(model: Book)
 }
 
-struct BookCellModel: BookCellModelType {
+struct BookCellModel: BookCellModelProtocol {
     let title: String
     let publisher: String?
     let linkStr: String?
