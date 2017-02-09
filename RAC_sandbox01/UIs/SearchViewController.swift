@@ -59,7 +59,7 @@ class SearchViewController: UIViewController, StoryboardInstantiatable {
     private func initView() {
         
         // set catch Datasource
-        searchViewModel?.setCellModels?.signal.observeValues({ cellModels in
+        _ = searchViewModel?.setCellModels?.signal.observeValues({ cellModels in
             self.searchViewModel?.bookCellModels = cellModels
             self.searchTableDataSource?.set(with: cellModels)
             self.tableView.dataSource = self.searchTableDataSource

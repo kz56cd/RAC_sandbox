@@ -32,7 +32,6 @@ struct SearchViewModel: SearchViewModelType {
                 // TODO:
                 // RAC apiに置き換える
                 if keyword.characters.count >= 1 {
-                    // HUD.flash(.progress, delay: 0.2)
                     selfObj.sendBooksRequest(keyword: keyword)
                 }
         }
