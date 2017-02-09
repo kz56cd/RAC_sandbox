@@ -15,13 +15,13 @@ extension UIImage {
         guard let context = UIGraphicsGetCurrentContext() else {
             return nil
         }
-        
+
         context.setFillColor(color.cgColor)
         context.fill(rect)
-        
+
         let image = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
-        
+
         return image
     }
 }

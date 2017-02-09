@@ -12,9 +12,9 @@ class BookCell: UITableViewCell {
 
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var publisherLabel: UILabel!
-    
+
     private var bookCellModel: BookCellModel?
-    
+
     override func awakeFromNib() {
         super.awakeFromNib()
     }
@@ -28,10 +28,4 @@ class BookCell: UITableViewCell {
         titleLabel.text = bookCellModel?.title
         publisherLabel.text = bookCellModel?.publisher
     }
-    
-    // TDDO:
-    // ここではとるべきでない VMかCoordinator
-//    func getLink() -> URL {
-//        return bookCellModel?.link 
-//    }
 }

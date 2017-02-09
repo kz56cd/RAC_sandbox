@@ -15,9 +15,9 @@ struct Books {
 
 extension Books {
     init (object: Any) throws {
-        
+
         // try parse
-        
+
 //        guard let dictionary = object as? [String: Any],
 //            let graph = dictionary["@graph"] as? Array<Any> else {
 //                throw ResponseError.unexpectedObject(object)

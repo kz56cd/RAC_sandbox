@@ -28,7 +28,6 @@
 		E697FC6F1E31E20A00DD2CD7 /* stub_search_book.json in Resources */ = {isa = PBXBuildFile; fileRef = E697FC6E1E31E20A00DD2CD7 /* stub_search_book.json */; };
 		E697FC731E31E9DB00DD2CD7 /* RequestStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = E697FC721E31E9DB00DD2CD7 /* RequestStub.swift */; };
 		E697FC751E32057B00DD2CD7 /* BookCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E697FC741E32057B00DD2CD7 /* BookCellModel.swift */; };
-		E697FC771E320CF800DD2CD7 /* BookCellModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = E697FC761E320CF800DD2CD7 /* BookCellModels.swift */; };
 		E6A27FDF1E2DBB0C000547D8 /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6A27FDE1E2DBB0C000547D8 /* Book.swift */; };
 		E6A27FE11E2DC195000547D8 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6A27FE01E2DC195000547D8 /* Request.swift */; };
 		E6A27FE51E2DCD0E000547D8 /* StoryboardInstantiatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6A27FE41E2DCD0E000547D8 /* StoryboardInstantiatable.swift */; };
@@ -95,7 +94,6 @@
 		E697FC6E1E31E20A00DD2CD7 /* stub_search_book.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = stub_search_book.json; sourceTree = "<group>"; };
 		E697FC721E31E9DB00DD2CD7 /* RequestStub.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RequestStub.swift; path = Models/APIManager/RequestStub.swift; sourceTree = "<group>"; };
 		E697FC741E32057B00DD2CD7 /* BookCellModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BookCellModel.swift; path = UIs/BookCellModel.swift; sourceTree = "<group>"; };
-		E697FC761E320CF800DD2CD7 /* BookCellModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BookCellModels.swift; path = UIs/BookCellModels.swift; sourceTree = "<group>"; };
 		E6A27FDE1E2DBB0C000547D8 /* Book.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Book.swift; path = Models/Book.swift; sourceTree = "<group>"; };
 		E6A27FE01E2DC195000547D8 /* Request.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Request.swift; path = Models/APIManager/Request.swift; sourceTree = "<group>"; };
 		E6A27FE41E2DCD0E000547D8 /* StoryboardInstantiatable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StoryboardInstantiatable.swift; path = Utilities/StoryboardInstantiatable.swift; sourceTree = "<group>"; };
@@ -246,7 +244,6 @@
 				E623F4C31E271DD400A9C630 /* SearchViewController.swift */,
 				E63B3FE91E40956B0089750F /* SearchViewModel.swift */,
 				E697FC741E32057B00DD2CD7 /* BookCellModel.swift */,
-				E697FC761E320CF800DD2CD7 /* BookCellModels.swift */,
 				E63C59B41E35BB1A0081913C /* SearchTableDataSource.swift */,
 			);
 			name = UIs;
@@ -439,7 +436,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "/usr/local/bin/carthage copy-frameworks\n";
+			shellScript = "/usr/local/bin/carthage copy-frameworks\n\nif which swiftlint >/dev/null; then\nswiftlint\nelse\necho \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -463,7 +460,6 @@
 				E697FC751E32057B00DD2CD7 /* BookCellModel.swift in Sources */,
 				E697FC731E31E9DB00DD2CD7 /* RequestStub.swift in Sources */,
 				E6A27FDF1E2DBB0C000547D8 /* Book.swift in Sources */,
-				E697FC771E320CF800DD2CD7 /* BookCellModels.swift in Sources */,
 				E6512ECC1E39BC1000758242 /* UIImage+Color.swift in Sources */,
 				E623F4C21E271DD400A9C630 /* AppDelegate.swift in Sources */,
 				E63C59B51E35BB1A0081913C /* SearchTableDataSource.swift in Sources */,

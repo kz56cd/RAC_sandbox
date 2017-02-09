@@ -9,26 +9,26 @@
 import UIKit
 
 @IBDesignable class CustomView: UIView {
-    
+
     @IBInspectable var cornerRadius: CGFloat = 0.0 {
         didSet {
             layer.cornerRadius = cornerRadius
             layer.shadowPath = UIBezierPath(roundedRect: bounds, cornerRadius: cornerRadius).cgPath
         }
     }
-    
+
     @IBInspectable var shadowRadius: CGFloat = 0.0 {
         didSet {
             layer.shadowRadius = shadowRadius
         }
     }
-    
+
     @IBInspectable var shadowColor: UIColor? = nil {
         didSet {
             layer.shadowColor = shadowColor?.cgColor
         }
     }
-    
+
     @IBInspectable var shadowOffset: CGSize = CGSize.zero {
         didSet {
             layer.shadowOffset = shadowOffset
@@ -44,19 +44,19 @@ import UIKit
             }
         }
     }
-    
+
     @IBInspectable var borderColor: UIColor? = nil {
         didSet {
             layer.borderColor = borderColor?.cgColor
         }
     }
-    
+
     @IBInspectable var borderWidth: CGFloat = 0.0 {
         didSet {
             layer.borderWidth = borderWidth
         }
     }
-    
+
     override var bounds: CGRect {
         didSet {
             layer.shadowPath = UIBezierPath(roundedRect: bounds, cornerRadius: cornerRadius).cgPath

@@ -14,13 +14,13 @@ import APIKit
 import PKHUD
 
 class SearchViewController: UIViewController, StoryboardInstantiatable {
-    
+
     @IBOutlet weak var label: UILabel!
     @IBOutlet weak var textField: UITextField!
     @IBOutlet weak var clearButton: UIButton!
     @IBOutlet weak var tableView: UITableView!
-    
-    var searchCoordinator :SearchCoordinator?
+
+    var searchCoordinator: SearchCoordinator?
     fileprivate var searchViewModel: SearchViewModel? = SearchViewModel()
     fileprivate var searchTableDataSource: SearchTableDataSource? = SearchTableDataSource()
 
@@ -28,17 +28,17 @@ class SearchViewController: UIViewController, StoryboardInstantiatable {
         super.viewDidLoad()
         initView()
     }
-    
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-    
+
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         shouldHideKeyboard()
     }
-    
+
     // Action
-    
+
     // TODO:
     // 可能であればdelegateをUIKit拡張(ReactiveCococa)に変える
     @IBAction func textDidChanged(_ sender: UITextField) {
@@ -47,17 +47,18 @@ class SearchViewController: UIViewController, StoryboardInstantiatable {
         }
         clearButton.isHidden = keyword.characters.count == 0
         searchViewModel?.input.value = keyword
+        HUD.flash(.progress, delay: 0.3)
     }
-    
+
     @IBAction func clearButtonTapped(_ sender: UIButton) {
         textField.text = ""
         clearButton.isHidden = true
     }
-    
+
     // private
-    
+
     private func initView() {
-        
+
         // set catch Datasource
         _ = searchViewModel?.setCellModels?.signal.observeValues({ cellModels in
             self.searchViewModel?.bookCellModels = cellModels
@@ -66,24 +67,24 @@ class SearchViewController: UIViewController, StoryboardInstantiatable {
             self.reloadTableView()
         })
     }
-    
+
     // for Alert
-    
+
     private func showErrorAlert() {
         let alertController = AlertFactory.makeNetworkErrorAlert()
         alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         present(alertController, animated: true, completion: nil)
     }
-    
+
     // for debug
-    
+
     private func reloadTableView() {
         tableView.reloadData()
         HUD.flash(.success, delay: 1.6)
     }
-    
+
     // fileprivate
-    
+
     fileprivate func shouldHideKeyboard() {
         if textField.isFirstResponder {
             textField.resignFirstResponder()

@@ -19,11 +19,11 @@ protocol SearchViewModelType {
 }
 
 struct SearchViewModel: SearchViewModelType {
-    
+
     var bookCellModels: [BookCellModel] = []
     let input: MutableProperty<String> = MutableProperty<String>("")
     let setCellModels: MutableProperty<[BookCellModel]>? = MutableProperty<[BookCellModel]>([])
-    
+
     init() {
         var selfObj = self // TODO: 望ましくない記述
         input.signal
@@ -36,11 +36,11 @@ struct SearchViewModel: SearchViewModelType {
                 }
         }
     }
-    
+
     mutating func sendBooksRequest(keyword: String) {
         let request = GetBooksRequest(keyword: keyword)
         var selfObj = self // TODO: 望ましくない記述
-        
+
         print("requst keyword: \(keyword)")
         Session.send(request) { result in
             switch result {
@@ -56,7 +56,7 @@ struct SearchViewModel: SearchViewModelType {
         }
         self = selfObj
     }
-    
+
     func getBook(with row: Int) -> Book? {
         return bookCellModels[row].book
     }

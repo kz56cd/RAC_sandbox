@@ -14,19 +14,19 @@ final class SearchCoordinator: CoordinatorType {
         return searchViewController as SearchViewController
     }
     let searchViewController: SearchViewController
-    
+
     init(presenter: SearchViewController) {
         searchViewController = presenter
         searchViewController.searchCoordinator = self
     }
-    
+
     func start() {
         // stub
     }
-    
+
     func presentBookDetail(with book: Book) {
         guard let link = book.link,
-            let linkUrl:URL = URL(string: link) else {
+            let linkUrl: URL = URL(string: link) else {
             return
         }
         let safariVC = SFSafariViewController(url: linkUrl)
