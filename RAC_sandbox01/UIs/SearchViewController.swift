@@ -20,6 +20,7 @@ class SearchViewController: UIViewController, StoryboardInstantiatable {
     @IBOutlet weak var clearButton: UIButton!
     @IBOutlet weak var tableView: UITableView!
     
+    var searchCoordinator :SearchCoordinator?
     fileprivate var searchViewModel: SearchViewModel? = SearchViewModel()
     fileprivate var searchTableDataSource: SearchTableDataSource? = SearchTableDataSource()
 
@@ -59,6 +60,7 @@ class SearchViewController: UIViewController, StoryboardInstantiatable {
         
         // set catch Datasource
         searchViewModel?.setCellModels?.signal.observeValues({ cellModels in
+            self.searchViewModel?.bookCellModels = cellModels
             self.searchTableDataSource?.set(with: cellModels)
             self.tableView.dataSource = self.searchTableDataSource
             self.reloadTableView()
@@ -87,23 +89,14 @@ class SearchViewController: UIViewController, StoryboardInstantiatable {
             textField.resignFirstResponder()
         }
     }
-    
-    // TODO:
-    // Coordintorでやる
-//    fileprivate func tryDispWebView(cell: BookCell) {
-//        let url: URL = cell.getLink()
-//        let safariVC = SFSafariViewController(url: url)
-//        self.present(safariVC, animated: true, completion: nil)
-//    }
 }
 
 extension SearchViewController: UITableViewDelegate {
     internal func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let cell = tableView.cellForRow(at: indexPath) as? BookCell else {
+        guard let book = searchViewModel?.getBook(with: indexPath.row) else {
             return
         }
-        print(cell)
-//        tryDispWebView(cell: cell)
+        searchCoordinator?.presentBookDetail(with: book)
     }
 }
 

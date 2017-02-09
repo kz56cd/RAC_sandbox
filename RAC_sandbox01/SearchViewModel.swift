@@ -57,4 +57,8 @@ struct SearchViewModel: SearchViewModelType {
         }
         self = selfObj
     }
+    
+    func getBook(with row: Int) -> Book? {
+        return bookCellModels[row].book
+    }
 }

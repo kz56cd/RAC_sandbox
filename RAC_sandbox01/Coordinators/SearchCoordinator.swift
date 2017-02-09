@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SafariServices
 
 final class SearchCoordinator: CoordinatorType {
     var presenter: UIViewController {
@@ -16,9 +17,19 @@ final class SearchCoordinator: CoordinatorType {
     
     init(presenter: SearchViewController) {
         searchViewController = presenter
+        searchViewController.searchCoordinator = self
     }
     
     func start() {
         // stub
+    }
+    
+    func presentBookDetail(with book: Book) {
+        guard let link = book.link,
+            let linkUrl:URL = URL(string: link) else {
+            return
+        }
+        let safariVC = SFSafariViewController(url: linkUrl)
+        searchViewController.present(safariVC, animated: true, completion: nil)
     }
 }
