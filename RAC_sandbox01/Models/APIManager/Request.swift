@@ -9,7 +9,6 @@
 import Foundation
 import APIKit
 
-// TODO:
 // http://ci.nii.ac.jp/books/opensearch/search?q={*検索ワード}
 // http://ci.nii.ac.jp/books/opensearch/search?q=オブジェクト指向&count=40&format=json
 // 上記の図書館蔵書検索のapiを利用する
@@ -25,8 +24,9 @@ extension BooksRequest {
 }
 
 struct GetBooksRequest: BooksRequest {
-    typealias Response = [Book]
-
+//    typealias Response = [Book]
+    typealias Response = Graph?
+    
     var method: HTTPMethod {
         return .get
     }
@@ -46,26 +46,11 @@ struct GetBooksRequest: BooksRequest {
         self.keyword = keyword
     }
 
-    func response(from object: Any, urlResponse: HTTPURLResponse) throws -> [Book] {
-        var list: [Book] = []
+    func response(from object: Any, urlResponse: HTTPURLResponse) throws -> Graph? {
         guard let dictionary = object as? [String: Any],
-            let graph = dictionary["@graph"] as? [Any] else {
+            let graph = dictionary["@graph"] as? [[String: Any]] else {
                 throw ResponseError.unexpectedObject(object)
         }
-        // TODO: かっこよく (flatmap)
-        for data in graph {
-            guard let datadic = data as? [String: Any],
-                let items = datadic["items"] as? [Any] else {
-                    throw ResponseError.unexpectedObject(object)
-            }
-            for item in items {
-                guard let item = item as? [String: Any],
-                    let book: Book = Book(object: item) else {
-                        throw ResponseError.unexpectedObject(object)
-                }
-                list.append(book)
-            }
-        }
-        return list
+        return Graph(object: graph[0])
     }
 }

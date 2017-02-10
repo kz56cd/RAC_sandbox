@@ -76,11 +76,11 @@ class SearchViewController: UIViewController, StoryboardInstantiatable {
         present(alertController, animated: true, completion: nil)
     }
 
-    // for debug
-
     private func reloadTableView() {
         tableView.reloadData()
-        HUD.flash(.success, delay: 1.6)
+        if (searchViewModel?.bookCellModels.count)! > 0 {
+            HUD.flash(.success, delay: 1.6)
+        }
     }
 
     // fileprivate

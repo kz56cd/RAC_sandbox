@@ -44,8 +44,12 @@ struct SearchViewModel: SearchViewModelProtocol {
         print("requst keyword: \(keyword)")
         Session.send(request) { result in
             switch result {
-            case .success(let list):
-                for book in list {
+            case .success(let graph):
+                guard let books: [Book] = graph?.books else {
+                    selfObj.setCellModels?.value = []
+                    return
+                }
+                for book in books {
                     selfObj.bookCellModels.append(BookCellModel(model: book))
                 }
                 selfObj.setCellModels?.value = selfObj.bookCellModels

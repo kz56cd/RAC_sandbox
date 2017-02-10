@@ -9,7 +9,7 @@
 import UIKit
 
 final class SearchTableDataSource: NSObject {
-    fileprivate var bookCellModels: [BookCellModel]? // TODO: ここはvarにすべき
+    fileprivate var bookCellModels: [BookCellModel]?
 }
 
 extension SearchTableDataSource: UITableViewDataSource {

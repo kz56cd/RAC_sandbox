@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		E60883C41E4B3225000FDEFC /* APIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E60883C31E4B3225000FDEFC /* APIKit.framework */; };
+		E60D0AA91E4D6F690023A72A /* Graph.swift in Sources */ = {isa = PBXBuildFile; fileRef = E60D0AA81E4D6F690023A72A /* Graph.swift */; };
 		E623F4C21E271DD400A9C630 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E623F4C11E271DD400A9C630 /* AppDelegate.swift */; };
 		E623F4C41E271DD400A9C630 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E623F4C31E271DD400A9C630 /* SearchViewController.swift */; };
 		E623F4C91E271DD400A9C630 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E623F4C81E271DD400A9C630 /* Assets.xcassets */; };
@@ -68,6 +69,7 @@
 
 /* Begin PBXFileReference section */
 		E60883C31E4B3225000FDEFC /* APIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = APIKit.framework; path = Carthage/Build/iOS/APIKit.framework; sourceTree = "<group>"; };
+		E60D0AA81E4D6F690023A72A /* Graph.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Graph.swift; path = Models/Entities/Graph.swift; sourceTree = "<group>"; };
 		E623F4BE1E271DD400A9C630 /* RAC_sandbox01.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RAC_sandbox01.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E623F4C11E271DD400A9C630 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E623F4C31E271DD400A9C630 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SearchViewController.swift; path = UIs/SearchViewController.swift; sourceTree = "<group>"; };
@@ -274,6 +276,7 @@
 			isa = PBXGroup;
 			children = (
 				E6A27FDE1E2DBB0C000547D8 /* Book.swift */,
+				E60D0AA81E4D6F690023A72A /* Graph.swift */,
 			);
 			name = Entities;
 			sourceTree = "<group>";
@@ -456,6 +459,7 @@
 				E623F4C41E271DD400A9C630 /* SearchViewController.swift in Sources */,
 				E6A27FE51E2DCD0E000547D8 /* StoryboardInstantiatable.swift in Sources */,
 				E63C59B11E35A7FC0081913C /* AppCoordinator.swift in Sources */,
+				E60D0AA91E4D6F690023A72A /* Graph.swift in Sources */,
 				E63C59AD1E35A3E50081913C /* Coordinator.swift in Sources */,
 				E697FC751E32057B00DD2CD7 /* BookCellModel.swift in Sources */,
 				E697FC731E31E9DB00DD2CD7 /* RequestStub.swift in Sources */,

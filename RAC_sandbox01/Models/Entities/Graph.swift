@@ -1,0 +1,24 @@
+//
+//  graph.swift
+//  RAC_sandbox01
+//
+//  Created by msano on 2017/02/10.
+//  Copyright © 2017年 msano. All rights reserved.
+//
+
+import APIKit
+
+struct Graph {
+    let items: [[String: Any]]?
+    let books: [Book]?
+}
+
+extension Graph {
+    init?(object: [String: Any]) {
+        guard let items = object["items"] as? [[String: Any]] else {
+            return nil
+        }
+        self.items = items
+        self.books = self.items.flatMap{ $0 }?.flatMap{ Book(object: $0) }
+    }
+}
