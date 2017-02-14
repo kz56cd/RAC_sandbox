@@ -24,7 +24,6 @@ extension BooksRequest {
 }
 
 struct GetBooksRequest: BooksRequest {
-//    typealias Response = [Book]
     typealias Response = Graph
     
     var method: HTTPMethod {

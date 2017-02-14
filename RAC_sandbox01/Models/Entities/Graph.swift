@@ -9,19 +9,16 @@
 import APIKit
 
 struct Graph {
-    var items: [[String: Any]]?
-    var books: [Book]?
+    var items: [[String: Any]] = []
+    var books: [Book] = []
 }
 
 extension Graph {
     init(object: [String: Any]) {
-        items = []
-        books = []
-        
         guard let items = object["items"] as? [[String: Any]] else {
             return
         }
         self.items = items
-        self.books = self.items.flatMap{ $0 }?.flatMap{ Book(object: $0) }
+        self.books = self.items.flatMap { $0 }.flatMap { Book(object: $0) }
     }
 }

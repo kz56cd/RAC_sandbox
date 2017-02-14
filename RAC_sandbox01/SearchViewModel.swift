@@ -58,12 +58,8 @@ struct SearchViewModel: SearchViewModelProtocol {
         self = selfObj
     }
 
-    private mutating func configureCellModels(with graph :Graph) {
-        guard let books: [Book] = graph.books else {
-            setCellModels?.value = []
-            return
-        }
-        for book in books {
+    private mutating func configureCellModels(with graph: Graph) {
+        for book in graph.books {
             bookCellModels.append(BookCellModel(model: book))
         }
         setCellModels?.value = bookCellModels
