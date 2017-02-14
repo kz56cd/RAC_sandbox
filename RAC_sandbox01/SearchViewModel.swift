@@ -36,7 +36,11 @@ struct SearchViewModel: SearchViewModelProtocol {
                 }
         }
     }
-
+    
+    func getBook(with row: Int) -> Book? {
+        return bookCellModels[row].book
+    }
+    
     mutating func sendBooksRequest(keyword: String) {
         let request = GetBooksRequest(keyword: keyword)
         var selfObj = self // TODO: 望ましくない記述
@@ -45,14 +49,7 @@ struct SearchViewModel: SearchViewModelProtocol {
         Session.send(request) { result in
             switch result {
             case .success(let graph):
-                guard let books: [Book] = graph?.books else {
-                    selfObj.setCellModels?.value = []
-                    return
-                }
-                for book in books {
-                    selfObj.bookCellModels.append(BookCellModel(model: book))
-                }
-                selfObj.setCellModels?.value = selfObj.bookCellModels
+                selfObj.configureCellModels(with: graph)
             case .failure(let error):
                 print("error: \(error)")
                 //self.showErrorAlert() // TODO: Error表記の繋ぎ込み
@@ -61,7 +58,14 @@ struct SearchViewModel: SearchViewModelProtocol {
         self = selfObj
     }
 
-    func getBook(with row: Int) -> Book? {
-        return bookCellModels[row].book
+    private mutating func configureCellModels(with graph :Graph) {
+        guard let books: [Book] = graph.books else {
+            setCellModels?.value = []
+            return
+        }
+        for book in books {
+            bookCellModels.append(BookCellModel(model: book))
+        }
+        setCellModels?.value = bookCellModels
     }
 }

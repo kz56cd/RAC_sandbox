@@ -25,7 +25,7 @@ extension BooksRequest {
 
 struct GetBooksRequest: BooksRequest {
 //    typealias Response = [Book]
-    typealias Response = Graph?
+    typealias Response = Graph
     
     var method: HTTPMethod {
         return .get
@@ -46,7 +46,7 @@ struct GetBooksRequest: BooksRequest {
         self.keyword = keyword
     }
 
-    func response(from object: Any, urlResponse: HTTPURLResponse) throws -> Graph? {
+    func response(from object: Any, urlResponse: HTTPURLResponse) throws -> Graph {
         guard let dictionary = object as? [String: Any],
             let graph = dictionary["@graph"] as? [[String: Any]] else {
                 throw ResponseError.unexpectedObject(object)
