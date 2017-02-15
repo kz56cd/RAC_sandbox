@@ -47,9 +47,11 @@ struct GetBooksRequest: BooksRequest {
 
     func response(from object: Any, urlResponse: HTTPURLResponse) throws -> Graph {
         guard let dictionary = object as? [String: Any],
-            let graph = dictionary["@graph"] as? [[String: Any]] else {
+            let graph = dictionary["@graph"] as? [[String: Any]],
+            let firstGraph = graph.first else {
                 throw ResponseError.unexpectedObject(object)
         }
-        return Graph(object: graph[0])
+        return Graph(object: firstGraph)
+
     }
 }
