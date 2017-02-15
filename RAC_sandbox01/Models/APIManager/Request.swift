@@ -52,6 +52,5 @@ struct GetBooksRequest: BooksRequest {
                 throw ResponseError.unexpectedObject(object)
         }
         return Graph(object: firstGraph)
-
     }
 }
