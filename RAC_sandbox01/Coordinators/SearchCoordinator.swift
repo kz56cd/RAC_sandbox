@@ -26,7 +26,7 @@ final class SearchCoordinator: Coordinator {
 
     func presentBookDetail(with book: Book) {
         guard let link = book.link,
-            let linkUrl: URL = URL(string: link) else {
+            let linkUrl = URL(string: link) else {
             return
         }
         let safariVC = SFSafariViewController(url: linkUrl)
