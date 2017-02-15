@@ -19,6 +19,6 @@ extension Graph {
             return
         }
         self.items = items
-        self.books = self.items.flatMap { $0 }.flatMap { Book(object: $0) }
+        self.books = self.items.flatMap { Book(object: $0) }
     }
 }
