@@ -40,7 +40,7 @@ struct GetBooksRequest: BooksRequest {
         ]
     }
 
-    let keyword: String
+    private let keyword: String
     init(keyword: String) {
         self.keyword = keyword
     }
