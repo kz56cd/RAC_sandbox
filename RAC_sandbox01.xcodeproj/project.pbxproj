@@ -242,11 +242,11 @@
 				E6512ECD1E39E18A00758242 /* CustomParts */,
 				E623F4CA1E271DD400A9C630 /* LaunchScreen.storyboard */,
 				E6A27FE61E2DE947000547D8 /* SearchViewController.storyboard */,
-				E6A27FEC1E2E0DCB000547D8 /* BookCell.swift */,
 				E623F4C31E271DD400A9C630 /* SearchViewController.swift */,
-				E63B3FE91E40956B0089750F /* SearchViewModel.swift */,
-				E697FC741E32057B00DD2CD7 /* BookCellModel.swift */,
 				E63C59B41E35BB1A0081913C /* SearchTableDataSource.swift */,
+				E63B3FE91E40956B0089750F /* SearchViewModel.swift */,
+				E6A27FEC1E2E0DCB000547D8 /* BookCell.swift */,
+				E697FC741E32057B00DD2CD7 /* BookCellModel.swift */,
 			);
 			name = UIs;
 			sourceTree = "<group>";
