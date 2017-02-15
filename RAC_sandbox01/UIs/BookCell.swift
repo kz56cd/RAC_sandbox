@@ -8,7 +8,7 @@
 
 import UIKit
 
-class BookCell: UITableViewCell {
+final class BookCell: UITableViewCell {
 
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var publisherLabel: UILabel!

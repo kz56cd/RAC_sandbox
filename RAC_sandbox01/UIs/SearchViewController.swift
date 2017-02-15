@@ -13,7 +13,7 @@ import Result
 import APIKit
 import PKHUD
 
-class SearchViewController: UIViewController, StoryboardInstantiatable {
+final class SearchViewController: UIViewController, StoryboardInstantiatable {
 
     @IBOutlet weak var label: UILabel!
     @IBOutlet weak var textField: UITextField!
