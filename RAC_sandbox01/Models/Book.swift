@@ -21,8 +21,8 @@ extension Book {
             return nil
         }
         if let publisherArray = object["dc:publisher"] as? [String],
-            publisherArray.count >= 1 {
-            self.publisher = publisherArray[0]
+            let firstPublisher = publisherArray.first {
+            self.publisher = firstPublisher
         } else {
             self.publisher = nil
         }
