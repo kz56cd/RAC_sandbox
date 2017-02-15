@@ -20,8 +20,8 @@ extension Book {
         guard let title = object["title"] as? String else {
             return nil
         }
-        self.publisher = (object["dc:publisher"] as? [String])?.first ?? nil
         self.title = title
+        self.publisher = (object["dc:publisher"] as? [String])?.first
         self.link = object["@id"] as? String
     }
 }

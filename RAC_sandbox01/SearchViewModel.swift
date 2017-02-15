@@ -11,57 +11,53 @@ import ReactiveSwift
 import Result
 import APIKit
 
-protocol SearchViewModelProtocol {
-    var bookCellModels: [BookCellModel] { get }
+protocol SearchViewModelProtocol: class {
+    var cellModels: Property<[BookCellModel]> { get }
     var input: MutableProperty<String> { get }
-    var setCellModels: MutableProperty<[BookCellModel]>? { get }
-    init()
+    func book(at row: Int) -> Book?
 }
 
-struct SearchViewModel: SearchViewModelProtocol {
-
-    var bookCellModels: [BookCellModel] = []
-    let input: MutableProperty<String> = MutableProperty<String>("")
-    let setCellModels: MutableProperty<[BookCellModel]>? = MutableProperty<[BookCellModel]>([])
-
+final class SearchViewModel: SearchViewModelProtocol {
+    
+    let input = MutableProperty<String>("")
+    let cellModels: Property<[BookCellModel]>
+    private let _cellModels = MutableProperty<[BookCellModel]>([])
+    
     init() {
-        var selfObj = self // TODO: 望ましくない記述
+        cellModels = Property(_cellModels)
         input.signal
             .debounce(1.0, on: QueueScheduler.main)
-            .observeValues { keyword in
+            .filter { keyword -> Bool in
+                return !keyword.characters.isEmpty
+            }
+            .observeValues { [weak self] keyword in
                 // TODO:
                 // RAC apiに置き換える
-                if keyword.characters.count >= 1 {
-                    selfObj.sendBooksRequest(keyword: keyword)
-                }
+                self?.sendBooksRequest(keyword: keyword)
         }
     }
     
-    func getBook(with row: Int) -> Book? {
-        return bookCellModels[row].book
+    func book(at row: Int) -> Book? {
+        guard row < cellModels.value.count else {
+            return nil
+        }
+        return cellModels.value[row].book
     }
     
-    mutating func sendBooksRequest(keyword: String) {
+    private func sendBooksRequest(keyword: String) {
         let request = GetBooksRequest(keyword: keyword)
-        var selfObj = self // TODO: 望ましくない記述
-
-        print("requst keyword: \(keyword)")
-        Session.send(request) { result in
+        Session.send(request) { [weak self] result in
             switch result {
             case .success(let graph):
-                selfObj.configureCellModels(with: graph)
+                self?.updateCellModels(with: graph)
             case .failure(let error):
                 print("error: \(error)")
                 //self.showErrorAlert() // TODO: Error表記の繋ぎ込み
             }
         }
-        self = selfObj
     }
-
-    private mutating func configureCellModels(with graph: Graph) {
-        for book in graph.books {
-            bookCellModels.append(BookCellModel(model: book))
-        }
-        setCellModels?.value = bookCellModels
+    
+    private func updateCellModels(with graph: Graph) {
+        _cellModels.value = graph.books.map(BookCellModel.init)
     }
 }
