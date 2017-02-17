@@ -25,32 +25,25 @@ extension BooksRequest {
 
 struct GetBooksRequest: BooksRequest {
     typealias Response = Graph
+    let method: HTTPMethod = .get
+    let path: String = ""
+    let parameters: Any?
     
-    var method: HTTPMethod {
-        return .get
-    }
-    var path: String {
-        return ""
-    }
-    var parameters: Any? {
-        return [
-            "q": self.keyword,
+    init(keyword: String) {
+        parameters = [
+            "q": keyword,
             "count": "40",
             "format": "json"
         ]
     }
 
-    private let keyword: String
-    init(keyword: String) {
-        self.keyword = keyword
-    }
-
     func response(from object: Any, urlResponse: HTTPURLResponse) throws -> Graph {
         guard let dictionary = object as? [String: Any],
-            let graph = dictionary["@graph"] as? [[String: Any]],
-            let firstGraph = graph.first else {
+            let graphDictionary = dictionary["@graph"] as? [[String: Any]],
+            let firstGraphDictionary = graphDictionary.first,
+            let graph = Graph(object: firstGraphDictionary) else {
                 throw ResponseError.unexpectedObject(object)
         }
-        return Graph(object: firstGraph)
+        return graph
     }
 }

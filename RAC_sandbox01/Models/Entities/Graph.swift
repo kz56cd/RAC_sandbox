@@ -9,16 +9,15 @@
 import APIKit
 
 struct Graph {
-    var items: [[String: Any]] = []
-    var books: [Book] = []
+    let books: [Book]
 }
 
 extension Graph {
-    init(object: [String: Any]) {
-        guard let items = object["items"] as? [[String: Any]] else {
-            return
+    init?(object: [String: Any]) {
+        guard let books = (object["items"] as? [[String: Any]])?.flatMap(Book.init),
+            !books.isEmpty else {
+            return nil
         }
-        self.items = items
-        self.books = self.items.flatMap { Book(object: $0) }
+        self.books = books
     }
 }
