@@ -1,0 +1,11 @@
+disabled_rules:
+  - line_length
+  - function_body_length
+  - variable_name
+  - type_name
+  - todo
+  - trailing_whitespace
+  - weak_delegate
+  - vertical_whitespace
+excluded:
+  - Carthage

@@ -8,32 +8,23 @@
 
 import Foundation
 
-protocol BookCellModelType {
-    var title: String? { get }
+protocol BookCellModelProtocol {
+    var title: String { get }
     var publisher: String? { get }
     var linkStr: String? { get }
-    var bookModel: Book? { get }
+    var book: Book { get }
     init(model: Book)
 }
 
-struct BookCellModel: BookCellModelType {
-    let title: String?
+struct BookCellModel: BookCellModelProtocol {
+    let title: String
     let publisher: String?
     let linkStr: String?
-    let bookModel: Book?
+    let book: Book
     init(model: Book) {
         title = model.title
         publisher = model.publisher
         linkStr = model.link
-        bookModel = model
-    }
-    
-    var link: URL {
-        get {
-            guard let urlStr: String = linkStr else {
-                return URL(string: "")!
-            }
-            return URL(string: urlStr)!
-        }
+        book = model
     }
 }

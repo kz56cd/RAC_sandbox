@@ -19,9 +19,9 @@ extension XibInstantiatable where Self: UIView {
             return
         }
         addSubview(view)
-        
+
         view.translatesAutoresizingMaskIntoConstraints = false
-        
+
         view.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
         view.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
         view.topAnchor.constraint(equalTo: self.topAnchor).isActive = true

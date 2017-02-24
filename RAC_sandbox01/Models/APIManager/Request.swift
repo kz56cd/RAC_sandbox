@@ -9,45 +9,41 @@
 import Foundation
 import APIKit
 
-
-// TODO:
 // http://ci.nii.ac.jp/books/opensearch/search?q={*検索ワード}
 // http://ci.nii.ac.jp/books/opensearch/search?q=オブジェクト指向&count=40&format=json
 // 上記の図書館蔵書検索のapiを利用する
 
-protocol BooksRequestType: Request {
-    
+protocol BooksRequest: Request {
+
 }
 
-extension BooksRequestType {
-    var baseURL:URL {
-        return URL(string:"http://ci.nii.ac.jp/books/opensearch/search")! as URL // json以下は後ほど
+extension BooksRequest {
+    var baseURL: URL {
+        return URL(string:"http://ci.nii.ac.jp/books/opensearch/search")! // json以下は後ほど
     }
 }
 
-struct GetBooksRequest: BooksRequestType {
-    typealias Response = Books
+struct GetBooksRequest: BooksRequest {
+    typealias Response = Graph
+    let method: HTTPMethod = .get
+    let path: String = ""
+    let parameters: Any?
     
-    var method: HTTPMethod {
-        return .get
-    }
-    var path: String {
-        return ""
-    }
-    var parameters: Any? {
-        return [
-            "q": self.keyword,
+    init(keyword: String) {
+        parameters = [
+            "q": keyword,
             "count": "40",
             "format": "json"
         ]
     }
-    var keyword: String = ""
-    
-    init(keyword: String) {
-        self.keyword = keyword
-    }
-    
-    func response(from object: Any, urlResponse: HTTPURLResponse) throws -> Books {
-        return try Books(object: object)
+
+    func response(from object: Any, urlResponse: HTTPURLResponse) throws -> Graph {
+        guard let dictionary = object as? [String: Any],
+            let graphDictionary = dictionary["@graph"] as? [[String: Any]],
+            let firstGraphDictionary = graphDictionary.first,
+            let graph = Graph(object: firstGraphDictionary) else {
+                throw ResponseError.unexpectedObject(object)
+        }
+        return graph
     }
 }

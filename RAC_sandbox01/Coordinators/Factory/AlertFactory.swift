@@ -9,7 +9,7 @@
 import UIKit
 
 struct AlertFactory {
-    
+
     static func makeNetworkErrorAlert() -> UIAlertController {
         return UIAlertController(
             title: "通信エラー",

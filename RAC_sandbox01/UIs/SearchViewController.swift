@@ -13,100 +13,80 @@ import Result
 import APIKit
 import PKHUD
 
-class SearchViewController: UIViewController, StoryboardInstantiatable {
-    
+final class SearchViewController: UIViewController, StoryboardInstantiatable {
+
     @IBOutlet weak var label: UILabel!
     @IBOutlet weak var textField: UITextField!
     @IBOutlet weak var clearButton: UIButton!
     @IBOutlet weak var tableView: UITableView!
-    
-    fileprivate var searchViewModel: SearchViewModel?
-    private var action: Action<String, String, NoError>?
-    
+
+    weak var searchCoordinator: SearchCoordinator? // TODO: VM経由にすれば、直接VCとCoordinatorがやりとりする必要はなくなる
+    fileprivate var searchViewModel: SearchViewModelProtocol = SearchViewModel() // TODO: DI的に、外から入れる
+    fileprivate var searchTableDataSource = SearchTableDataSource() // TODO: DI的に、外から入れる方がいいかも
+
     override func viewDidLoad() {
         super.viewDidLoad()
         initView()
     }
-    
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-    
+
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         shouldHideKeyboard()
     }
-    
+
     // Action
-    
+
+    // TODO:
+    // 可能であればdelegateをUIKit拡張(ReactiveCococa)に変える
     @IBAction func textDidChanged(_ sender: UITextField) {
         guard let keyword = sender.text else {
             return
         }
-        clearButton.isHidden = keyword.characters.count == 0
-        action?.apply(keyword)
-            .start()
+        clearButton.isHidden = keyword.characters.count == 0 // TODO: clearButtonの制御がVCに入ってしまっているので、VM側に移したい
+        searchViewModel.input.value = keyword
+        HUD.flash(.progress, delay: 0.3) // TODO: この表示にdebounceが効いていない。設計的には、VM側から制御したい
     }
-    
+
     @IBAction func clearButtonTapped(_ sender: UIButton) {
-        textField.text = ""
-        clearButton.isHidden = true
+        textField.text = "" // TODO: これもVM側からの命令でやるようにしたい
+        clearButton.isHidden = true // TODO: clearButtonの制御がVCに入ってしまっているので、VM側に移したい
     }
-    
+
     // private
-    
+
     private func initView() {
-        
-        searchViewModel = SearchViewModel.init()
-        
-        // set input action
-        action = Action<String, String, NoError> { (word) -> SignalProducer<String, NoError> in
-            return SignalProducer<String, NoError> { (observer, disposable) in
-                print("word: \(word)")
-                observer.send(value: word)
-                observer.sendCompleted()
-            }
-        }
-        action?.values
-            .debounce(1.0, on: QueueScheduler.main)
-            .observeValues({ value in
-                // TODO
-                // RAC apiに置き換える
-                if value.characters.count >= 1 {
-                    HUD.flash(.progress, delay: 0.2)
-                    self.searchViewModel?.sendBooksRequest(keyword: value)
-                }
-            })
+        tableView.dataSource = searchTableDataSource
+        tableView.delegate = self
         
         // set catch Datasource
-        searchViewModel?.datasource?.signal.observeValues({ searchTableDataSource in
-            self.tableView.dataSource = searchTableDataSource
-            self.reloadTableView()
-        })
+        _ = searchViewModel.cellModels.signal
+            .observe(on: UIScheduler())
+            .observeValues({ [weak self] cellModels in
+                self?.searchTableDataSource.updateCellModels(to: cellModels)
+                self?.reloadTableView()
+            })
     }
-    
+
     // for Alert
-    
+
     private func showErrorAlert() {
         let alertController = AlertFactory.makeNetworkErrorAlert()
-        alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: { [weak self] _ in
-        }))
+        alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         present(alertController, animated: true, completion: nil)
     }
-    
-    // for debug
-    
-    private func moveTestVC() {
-        let testViewController = TestViewController.instantiate()
-        self.present(testViewController, animated: true, completion: nil)
-    }
-    
+
     private func reloadTableView() {
         tableView.reloadData()
-        HUD.flash(.success, delay: 1.6)
+        if searchViewModel.cellModels.value.count > 0 {
+            HUD.flash(.success, delay: 1.6) // TODO: これもVM側からの命令でやるようにしたい
+        }
     }
-    
+
     // fileprivate
-    
+
     fileprivate func shouldHideKeyboard() {
         if textField.isFirstResponder {
             textField.resignFirstResponder()
@@ -116,18 +96,10 @@ class SearchViewController: UIViewController, StoryboardInstantiatable {
 
 extension SearchViewController: UITableViewDelegate {
     internal func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let cell = tableView.cellForRow(at: indexPath) as? BookCell else {
+        guard let book = searchViewModel.book(at: indexPath.row) else {
             return
         }
-        tryDispWebView(cell: cell)
-    }
-}
-
-extension SearchViewController: SFSafariViewControllerDelegate {
-    func tryDispWebView(cell: BookCell) {
-        let url: URL = cell.getLink()
-        let safariVC = SFSafariViewController(url: url)
-        self.present(safariVC, animated: true, completion: nil)
+        searchCoordinator?.presentBookDetail(with: book) // TODO: VCとCoordinatorが直接やり取りするより、VMを経由してやりとりしたほうがよいかも
     }
 }
 
